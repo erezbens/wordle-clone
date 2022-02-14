@@ -2,12 +2,13 @@ const PORT = 8000;
 const axios = require("axios").default;
 const express = require("express");
 const cors = require("cors");
+const functions = require("firebase-functions");
 require("dotenv").config();
 
 const app = express();
 app.use(cors());
 
-app.listen(PORT, () => console.log("Server running on port " + PORT));
+// app.listen(PORT, () => console.log("Server running on port " + PORT));
 
 app.get("/word", (req, res) => {
   const options = {
@@ -53,3 +54,8 @@ app.get("/check", (req, res) => {
       console.error(error);
     });
 });
+
+// Create and Deploy Your First Cloud Functions
+// https://firebase.google.com/docs/functions/write-firebase-functions
+
+exports.app = functions.region("europe-west1").https.onRequest(app);

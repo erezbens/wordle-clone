@@ -4,14 +4,22 @@ const messageDisplay = document.querySelector(".message-container");
 
 let wordle;
 
+const isDebug = false;
+
+route = isDebug
+  ? "http://localhost:5000"
+  : "https://europe-west1-wordle-clone-785d4.cloudfunctions.net/app";
+
 const getWordle = () => {
-  fetch("http://localhost:8000/word")
+  fetch(`${route}/word`)
     .then((res) => res.json())
     .then((json) => {
-      console.log(json);
+      if (isDebug) {
+        console.debug(json);
+      }
       wordle = json.toUpperCase();
     })
-    .catch((e) => console.log(e));
+    .catch((e) => console.error(e));
 };
 
 getWordle();
@@ -83,7 +91,6 @@ keys.forEach((key) => {
 });
 
 const handleClick = (key) => {
-  console.log("clicked", key);
   if (key === "ENTER") {
     checkRow();
     return;
@@ -124,10 +131,9 @@ const deleteLetter = () => {
 const checkRow = () => {
   const guess = guessRows[currentRow].join("");
   if (currentTile === 5) {
-    fetch(`http://localhost:8000/check/?word=${guess}`)
+    fetch(`${route}/check/?word=${guess}`)
       .then((res) => res.json())
       .then((json) => {
-        console.log(json);
         if (json === "Entry word not found") {
           showMessage("Word not in dictionary");
           return;
@@ -152,7 +158,7 @@ const checkRow = () => {
           }
         }
       })
-      .catch((e) => console.log(e));
+      .catch((e) => console.error(e));
   }
 };
 
