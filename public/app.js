@@ -1,6 +1,7 @@
 const tileDisplay = document.querySelector(".tile-container");
 const keyboard = document.querySelector(".key-container");
 const messageDisplay = document.querySelector(".message-container");
+const leaderboard = document.querySelector(".leaderboard-container");
 
 let wordle;
 
@@ -88,6 +89,27 @@ keys.forEach((key) => {
   buttonElement.setAttribute("id", key);
   buttonElement.addEventListener("click", () => handleClick(key));
   keyboard.append(buttonElement);
+});
+
+const participents = [
+  {
+    name: "Erez",
+    wordles: 20,
+    totalGuesses: 57,
+    photoURL: "http://sofnjdkv",
+  },
+  {
+    name: "Masha",
+    wordles: 432,
+    totalGuesses: 1241,
+    photoURL: "http://sofnjdkv",
+  },
+];
+
+participents.forEach((p, index) => {
+  const participent = document.createElement("p");
+  participent.textContent = `#${index + 1}. ${p.name} - ${p.wordles} wordles`;
+  leaderboard.append(participent);
 });
 
 const handleClick = (key) => {
