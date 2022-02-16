@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
-import { auth, db, logout } from "./firebase";
-import { query, collection, getDocs, where } from "firebase/firestore";
+import { auth, db, logout, updateScore } from "./firebase";
+import { query, collection, getDoc, getDocs, where } from "firebase/firestore";
 import Game from "./Game";
 import GameClone from "./GameClone";
 import UserDetails from "./UserDetails";
@@ -30,6 +30,11 @@ function Dashboard() {
     if (!user) return navigate("/");
     fetchUserName();
   }, [user, loading]);
+
+  // if (user.uid) {
+  //   console.log("user.uid: " + user.uid);
+  //   updateScore({ userId: user.uid, amount: 1 });
+  // }
 
   return (
     <>

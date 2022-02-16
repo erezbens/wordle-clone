@@ -12,10 +12,12 @@ import {
 import {
   getFirestore,
   query,
+  getDoc,
   getDocs,
   collection,
   where,
   addDoc,
+  updateDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -32,6 +34,27 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+
+const updateScore = async ({ userId, amount }) => {
+  try {
+    console.log("hii");
+    const q = query(collection(db, "users"), where("uid", "==", userId));
+    const doc = await getDoc(q);
+
+    console.log(doc);
+    const prevScore = doc.docs[0].score;
+    console.log(prevScore);
+
+    if (doc.docs.length === 0) {
+      await updateDoc(doc.docs[0], {
+        score: prevScore + 1,
+      });
+    }
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
+};
 
 const getLeaderboard = async () => {
   try {
@@ -52,8 +75,6 @@ const signInWithGoogle = async () => {
     const res = await signInWithPopup(auth, googleProvider);
     const user = res.user;
 
-    console.log(user);
-
     const q = query(collection(db, "users"), where("uid", "==", user.uid));
     const docs = await getDocs(q);
     if (docs.docs.length === 0) {
@@ -63,6 +84,7 @@ const signInWithGoogle = async () => {
         authProvider: "google",
         email: user.email,
         photoURL: user.photoURL,
+        score: 0,
       });
     }
   } catch (err) {
@@ -129,5 +151,6 @@ export {
   sendPasswordReset,
   logout,
   getLeaderboard,
+  updateScore,
   // _signInAnonymously,
 };
