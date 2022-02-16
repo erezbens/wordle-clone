@@ -1,13 +1,12 @@
 const tileDisplay = document.querySelector(".tile-container");
 const keyboard = document.querySelector(".key-container");
 const messageDisplay = document.querySelector(".message-container");
-const leaderboard = document.querySelector(".leaderboard-container");
 
 let wordle;
 
 const isDebug = true;
 
-route = isDebug
+const route = isDebug
   ? "http://localhost:5001/wordle-clone-785d4/europe-west1/app"
   : "https://europe-west1-wordle-clone-785d4.cloudfunctions.net/app";
 
@@ -20,6 +19,7 @@ const getWordle = () => {
       }
       wordle = json.toUpperCase();
     })
+
     .catch((e) => console.error(e));
 };
 
@@ -53,7 +53,7 @@ const keys = [
   "B",
   "N",
   "M",
-  "«",
+  "<<",
 ];
 
 const guessRows = [
@@ -91,33 +91,12 @@ keys.forEach((key) => {
   keyboard.append(buttonElement);
 });
 
-// const participents = [
-//   {
-//     name: "Erez",
-//     wordles: 20,
-//     totalGuesses: 57,
-//     photoURL: "http://sofnjdkv",
-//   },
-//   {
-//     name: "Masha",
-//     wordles: 432,
-//     totalGuesses: 1241,
-//     photoURL: "http://sofnjdkv",
-//   },
-// ];
-
-// participents.forEach((p, index) => {
-//   const participent = document.createElement("p");
-//   participent.textContent = `#${index + 1}. ${p.name} - ${p.wordles} wordles`;
-//   leaderboard.append(participent);
-// });
-
 const handleClick = (key) => {
   if (key === "ENTER") {
     checkRow();
     return;
   }
-  if (key === "«") {
+  if (key === "<<") {
     deleteLetter();
     return;
   }

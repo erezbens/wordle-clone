@@ -1,0 +1,250 @@
+* {
+  color: #ffffff;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+body {
+  background-color: #121213;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.game-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.metadata-container {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.leaderboard-button {
+  display: flex;
+  padding: 10px 45px;
+  text-decoration: none;
+  font-family: "Poppins", sans-serif;
+  font-size: 40px;
+  color: white;
+  background: #6225e6;
+  transition: 1s;
+  box-shadow: 6px 6px 0 black;
+  transform: skewX(-15deg);
+}
+
+
+.leaderboard-button:focus {
+  outline: none; 
+}
+
+.leaderboard-button:hover {
+   transition: 0.5s;
+   box-shadow: 10px 10px 0 #FBC638;
+}
+
+.leaderboard-button span:nth-child(2) {
+   transition: 0.5s;
+   margin-right: 0px;
+}
+
+.leaderboard-button:hover  span:nth-child(2) {
+   transition: 0.5s;
+   margin-right: 45px;
+}
+
+ span {
+   transform: skewX(15deg) 
+ }
+
+ span:nth-child(2) {
+   width: 20px;
+   margin-left: 30px;
+   position: relative;
+   top: 12%;
+ }
+ 
+/**************SVG****************/
+
+path.one {
+   transition: 0.4s;
+   transform: translateX(-60%);
+}
+
+path.two {
+   transition: 0.5s;
+   transform: translateX(-30%);
+}
+
+.leaderboard-button:hover path.three {
+   animation: color_anim 1s infinite 0.2s;
+}
+
+.leaderboard-button:hover path.one {
+   transform: translateX(0%);
+   animation: color_anim 1s infinite 0.6s;
+}
+
+.leaderboard-button:hover path.two {
+   transform: translateX(0%);
+   animation: color_anim 1s infinite 0.4s;
+}
+
+/* SVG animations */
+
+@keyframes color_anim {
+   0% {
+       fill: white;
+   }
+   50% {
+       fill: #FBC638;
+   }
+   100% {
+       fill: white;
+   }
+}
+
+button {
+  background-color: rgb(46, 26, 26);
+}
+
+.leaderboard-button {
+  font-size: 24px;
+  margin-right: 18px;
+}
+
+.user-details-container {
+  margin-left: 18px;
+  margin-top: 18px;
+  text-align: center;
+}
+
+.centered {
+  /* position: fixed;
+  left: 50%;
+  transform: translate(-50%, 0); */
+
+  /* width: 90vw;
+  height: 90vh;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -(X/2)u;
+  margin-top: -(Y/2)u; */
+}
+
+.leaderboard-container {
+  /* position: fixed;
+  width: 90vw;
+  height: 90vh; */
+  /* width: 100%; */
+  /* height: 100%; */
+}
+
+.title-container {
+  text-align: center;
+  width: 510px;
+  border-bottom: solid 1px #3a3a3c;
+}
+
+.tile-container {
+  margin-top: 30px;
+  width: 330px;
+  margin-bottom: 30px;
+}
+
+.key-container {
+  width: 510px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.key-container button {
+  width: 43px;
+  height: 58px;
+  border-radius: 4px;
+  border: none;
+  background-color: #818384;
+  margin: 4px;
+}
+
+.key-container button:nth-child(11) {
+  margin-left: 30px;
+}
+
+.key-container button:nth-child(20),
+.key-container button:nth-child(28) {
+  width: 68px;
+}
+
+.tile-container div {
+  display: flex;
+}
+
+.tile-container .tile {
+  width: 62px;
+  height: 62px;
+  border: 2px solid #3a3a3c;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  margin: 2px;
+}
+
+.message-container {
+  margin-top: 30px;
+  height: 30px;
+}
+
+.message-container p {
+  background-color: #818384;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 0;
+}
+
+.tile.flip {
+  animation: 0.5s linear flipping;
+  background-color: green;
+}
+
+@keyframes flipping {
+  0% {
+    transform: rotateX(0deg);
+  }
+  50% {
+    transform: rotateX(90deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+.green-overlay {
+  background-color: #538d4e !important;
+  border: none !important;
+}
+.yellow-overlay {
+  background-color: #b59f3a !important;
+  border: none !important;
+}
+.grey-overlay {
+  background-color: #3a3a3c !important;
+  border: none !important;
+}
+.black-overlay {
+  background-color: #000000 !important;
+  border: none !important;
+  border: 1px solid grey !important;
+}
