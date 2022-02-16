@@ -31,10 +31,9 @@ function Dashboard() {
     fetchUserName();
   }, [user, loading]);
 
-  // if (user.uid) {
-  //   console.log("user.uid: " + user.uid);
-  //   updateScore({ userId: user.uid, amount: 1 });
-  // }
+  if (user.uid) {
+    updateScore(user.uid, 1);
+  }
 
   return (
     <>

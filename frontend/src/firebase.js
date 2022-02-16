@@ -17,6 +17,7 @@ import {
   collection,
   where,
   addDoc,
+  doc,
   updateDoc,
 } from "firebase/firestore";
 
@@ -35,31 +36,42 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-const updateScore = async ({ userId, amount }) => {
+const updateScore = async (userId, amount) => {
   try {
-    const q = query(collection(db, "users"), where("uid", "==", userId));
-    const doc = await getDoc(q);
-
-    // console.log(doc);
-    const prevScore = doc.docs[0].score;
-    // console.log(prevScore);
-
-    if (doc.docs.length === 0) {
-      await updateDoc(doc.docs[0], {
-        score: prevScore + 1,
-      });
-    }
+    // console.log("update score");
+    // const q = query(collection(db, "users"), where("score", "==", 0));
+    // const docs = await getDocs(q);
+    // console.log(docs);
+    // console.log(docs.docs.length);
+    // console.log(docs.docs);
+    // if (docs.docs.length === 0) {
+    //   console.log("Something's wrong");
+    // } else {
+    //   console.log(docs.docs);
+    // }
+    // const doc = await getDocs(q);
+    // const data = doc.docs[0].data();
+    // const someDoc = doc(db, "users", userId);
+    // const foo = getDoc(doc("users", userId));
+    // await updateDoc(doc, {
+    //   score: 1024317,
+    // });
+    // if (doc.docs.length === 0) {
+    //   await updateDoc(doc.docs[0], {
+    //     score: prevScore + 1,
+    //   });
+    // }
   } catch (err) {
     console.error(err);
-    alert(err.message);
+    // alert(err.message);
   }
 };
 
 const getLeaderboard = async () => {
   try {
     // console.log("hi");
-    const q = query(collection(db, "users"));
-    const docs = await getDocs(q);
+    // const q = query(collection(db, "users"));
+    // const docs = await getDocs(q);
     // console.log(q);
     // console.log(docs);
   } catch (err) {

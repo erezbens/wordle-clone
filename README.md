@@ -17,7 +17,7 @@ npm run start
 ```
 firebase serve --only functions,hosting
 ```
-
+  * You have to build first using `npm run build` in frontend (hosting is lookin at `frontend/public`).
   * Change `isDebug` variable in `frontend/public/gameScript.js` to true.
 
 ## How To Deploy
@@ -34,8 +34,6 @@ npm run build
 ```
 firebase deploy
 ```
-
-
 
 
 Enjoy!
