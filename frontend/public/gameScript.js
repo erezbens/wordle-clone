@@ -4,9 +4,9 @@ const messageDisplay = document.querySelector(".message-container");
 
 let wordle;
 
-const isDebug = true;
+const isDebug = false;
 
-route = isDebug
+const route = isDebug
   ? "http://localhost:5001/wordle-clone-785d4/europe-west1/app"
   : "https://europe-west1-wordle-clone-785d4.cloudfunctions.net/app";
 
@@ -19,6 +19,7 @@ const getWordle = () => {
       }
       wordle = json.toUpperCase();
     })
+
     .catch((e) => console.error(e));
 };
 
@@ -52,7 +53,7 @@ const keys = [
   "B",
   "N",
   "M",
-  "«",
+  "<<",
 ];
 
 const guessRows = [
@@ -95,7 +96,7 @@ const handleClick = (key) => {
     checkRow();
     return;
   }
-  if (key === "«") {
+  if (key === "<<") {
     deleteLetter();
     return;
   }

@@ -32,7 +32,7 @@ app.get("/word", (req, res) => {
 });
 
 app.get("/check", (req, res) => {
-  console.log(req.query.word);
+  // console.log(req.query.word);
 
   const options = {
     method: "GET",
@@ -47,7 +47,7 @@ app.get("/check", (req, res) => {
   axios
     .request(options)
     .then((response) => {
-      console.log(response.data);
+      // console.log(response.data);
       res.json(response.data.result_msg);
     })
     .catch((error) => {
