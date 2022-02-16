@@ -35,16 +35,16 @@ function Dashboard() {
     <>
       <div className="metadata-container">
         <UserDetails name={name} user={user} logout={logout} />
-        <button
+        {/* <button
           className="leaderboard-button"
           onClick={() => setShowLeaderboard((prev) => !prev)}
         >
           Show Leaderboard
-        </button>
+        </button> */}
       </div>
-      <div className="leaderboard-container">
+      {/* <div className="leaderboard-container">
         {showLeaderboard && <Leaderboard user={user} />}
-      </div>
+      </div> */}
 
       {/* <div className="chat">
         <Chat user={user} />

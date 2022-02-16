@@ -9,13 +9,14 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  background-color: #dcdcdc;
+  background-color: #312522;
   padding: 30px;
 }
 .login__textBox {
   padding: 10px;
   font-size: 18px;
   margin-bottom: 10px;
+  color: #0c0a0a;
 }
 .login__btn {
   padding: 10px;
@@ -23,10 +24,10 @@
   margin-bottom: 10px;
   border: none;
   color: white;
-  background-color: black;
+  background-color: #212121;
 }
 .login__google {
-  background-color: #4285f4;
+  background-color: #f44336;
 }
 .login div {
   margin-top: 7px;

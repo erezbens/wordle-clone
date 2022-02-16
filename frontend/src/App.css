@@ -143,6 +143,7 @@ button {
 }
 
 .leaderboard-container {
+  position: fixed;
   /* position: fixed;
   width: 90vw;
   height: 90vh; */

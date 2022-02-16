@@ -19,7 +19,7 @@ import {
 } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyCQtr1b2XdyZ-GBgElk_9GYfsk7zVubdqA",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "wordle-clone-785d4.firebaseapp.com",
   databaseURL: "https://wordle-clone-785d4-default-rtdb.firebaseio.com",
   projectId: "wordle-clone-785d4",
@@ -32,6 +32,19 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+
+const getLeaderboard = async () => {
+  try {
+    console.log("hi");
+    const q = query(collection(db, "users"));
+    const docs = await getDocs(q);
+    console.log(q);
+    console.log(docs);
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
+};
 
 const googleProvider = new GoogleAuthProvider();
 const signInWithGoogle = async () => {
@@ -115,5 +128,6 @@ export {
   registerWithEmailAndPassword,
   sendPasswordReset,
   logout,
+  getLeaderboard,
   // _signInAnonymously,
 };
