@@ -4,7 +4,7 @@ const messageDisplay = document.querySelector(".message-container");
 
 let wordle;
 
-const isDebug = true;
+const isDebug = false;
 
 const route = isDebug
   ? "http://localhost:5001/wordle-clone-785d4/europe-west1/app"

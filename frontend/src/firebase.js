@@ -37,13 +37,12 @@ const db = getFirestore(app);
 
 const updateScore = async ({ userId, amount }) => {
   try {
-    console.log("hii");
     const q = query(collection(db, "users"), where("uid", "==", userId));
     const doc = await getDoc(q);
 
-    console.log(doc);
+    // console.log(doc);
     const prevScore = doc.docs[0].score;
-    console.log(prevScore);
+    // console.log(prevScore);
 
     if (doc.docs.length === 0) {
       await updateDoc(doc.docs[0], {
@@ -58,11 +57,11 @@ const updateScore = async ({ userId, amount }) => {
 
 const getLeaderboard = async () => {
   try {
-    console.log("hi");
+    // console.log("hi");
     const q = query(collection(db, "users"));
     const docs = await getDocs(q);
-    console.log(q);
-    console.log(docs);
+    // console.log(q);
+    // console.log(docs);
   } catch (err) {
     console.error(err);
     alert(err.message);
