@@ -141,15 +141,11 @@ const checkRow = () => {
         } else {
           flipTiles();
           if (guess === wordle) {
-            showMessage(
-              "Great Job!! You found the word in " +
-                (currentRow + 1) +
-                " tries!"
-            );
+            showMessage("GREAT JOB!! Reload to restart :)");
             isGameOver = true;
           } else {
             if (currentRow >= 5) {
-              showMessage("Game Over");
+              showMessage("Game Over :( Reload to restart");
               isGameOver = true;
             }
             if (currentRow < 5) {
