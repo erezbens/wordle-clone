@@ -8,10 +8,7 @@ import Dashboard from "./Dashboard";
 
 function App() {
   return (
-    <div className="page-container">
-      <div className="title-container">
-        <h1>Wordle Clone</h1>
-      </div>
+    <div>
       <Router>
         <Routes>
           <Route exact path="/" element={<Login />} />

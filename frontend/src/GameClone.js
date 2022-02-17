@@ -12,7 +12,7 @@ function GameClone() {
     };
   }, []);
 
-  return <div className="game-container" />;
+  return <div />;
 }
 
 export default GameClone;
