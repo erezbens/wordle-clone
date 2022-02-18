@@ -2,37 +2,73 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <!-- <link rel="icon" href="%PUBLIC_URL%/favicon.ico" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
       content="Web site created using create-react-app"
     />
-    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-    <!--
-      manifest.json provides metadata used when your web app is installed on a
-      user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
-    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <title>React App</title>
+    <!-- <link rel="manifest" href="%PUBLIC_URL%/manifest.json" /> -->
+    <title>Wordle Clone</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <div id="root"></div>
-    <div class="game-container">
+    <div id="global">
+      <div id="root"></div>
+      <header>
+        <div class="menu-left"></div>
+        <div class="title">Wordle Clone</div>
+        <div class="menu-right"></div>
+      </header>
       <div class="message-container"></div>
-      <div class="tile-container"></div>
-      <div class="key-container"></div>
+      <div class="game">
+        <div id="board-container">
+          <div id="board"></div>
+        </div>
+        <div class="game-keyboard">
+          <div class="row">
+            <button id="Q" data-key="Q">Q</button>
+            <button id="W" data-key="W">W</button>
+            <button id="E" data-key="E">E</button>
+            <button id="R" data-key="R">R</button>
+            <button id="T" data-key="T">T</button>
+            <button id="Y" data-key="Y">Y</button>
+            <button id="U" data-key="U">U</button>
+            <button id="I" data-key="I">I</button>
+            <button id="O" data-key="O">O</button>
+            <button id="P" data-key="P">P</button>
+          </div>
+          <div class="row">
+            <div class="spacer half"></div>
+            <button id="A" data-key="A">A</button>
+            <button id="S" data-key="S">S</button>
+            <button id="D" data-key="D">D</button>
+            <button id="F" data-key="F">F</button>
+            <button id="G" data-key="G">G</button>
+            <button id="H" data-key="H">H</button>
+            <button id="J" data-key="J">J</button>
+            <button id="K" data-key="K">K</button>
+            <button id="L" data-key="L">L</button>
+            <div class="spacer half"></div>
+          </div>
+          <div class="row">
+            <button id="ENTER" data-key="ENTER" class="one-and-a-half">
+              enter
+            </button>
+            <button id="Z" data-key="Z">Z</button>
+            <button id="X" data-key="X">X</button>
+            <button id="C" data-key="C">C</button>
+            <button id="V" data-key="V">V</button>
+            <button id="B" data-key="B">B</button>
+            <button id="N" data-key="N">N</button>
+            <button id="M" data-key="M">M</button>
+            <button id="<<" data-key="<<" class="one-and-a-half">
+              &#9003;
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>

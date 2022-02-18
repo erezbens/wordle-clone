@@ -1,5 +1,6 @@
-const tileDisplay = document.querySelector(".tile-container");
-const keyboard = document.querySelector(".key-container");
+// const tileDisplay = document.querySelector(".board-container");
+const tileDisplay = document.getElementById("board");
+const keyboard = document.querySelector(".game-keyboard");
 const messageDisplay = document.querySelector(".message-container");
 
 let wordle;
@@ -84,15 +85,19 @@ guessRows.forEach((row, rowIndex) => {
 });
 
 keys.forEach((key) => {
-  const buttonElement = document.createElement("button");
-  buttonElement.textContent = key;
-  buttonElement.setAttribute("id", key);
+  const buttonElement = document.getElementById(key);
   buttonElement.addEventListener("click", () => handleClick(key));
-  keyboard.append(buttonElement);
+
+  // const buttonElement = document.createElement("button");
+  // buttonElement.textContent = key;
+  // buttonElement.setAttribute("id", key);
+  // buttonElement.addEventListener("click", () => handleClick(key));
+  // keyboard.append(buttonElement);
 });
 
 const handleClick = (key) => {
   if (key === "ENTER") {
+    console.log("hi");
     checkRow();
     return;
   }
@@ -141,15 +146,11 @@ const checkRow = () => {
         } else {
           flipTiles();
           if (guess === wordle) {
-            showMessage(
-              "Great Job!! You found the word in " +
-                (currentRow + 1) +
-                " tries!"
-            );
+            showMessage("GREAT JOB!! Reload to restart :)");
             isGameOver = true;
           } else {
             if (currentRow >= 5) {
-              showMessage("Game Over");
+              showMessage("Game Over :( Reload to restart");
               isGameOver = true;
             }
             if (currentRow < 5) {

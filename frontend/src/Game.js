@@ -210,7 +210,7 @@
 //           </div>
 //         ))}
 //       </div>
-//       <div className="key-container">
+//       <div className="game-keyboard">
 //         {keys.map((key, index) => (
 //           <button
 //             ref={(el) => (keysRef.current[index] = el)}

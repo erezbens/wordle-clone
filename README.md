@@ -2,22 +2,38 @@
 
 This is a remake for the famous Wordle game, using only html, css and javascript.
 
-## Install
 
-To run the game on your local machine, you need to do few things: 
-1. Sign up to [RapidApi](https://rapidapi.com/).  
-2. Subscribe to the following APIs (it's free!):  
-   - [Word Dictionary](https://rapidapi.com/twinword/api/word-dictionary/).
-   - [Random Words](https://rapidapi.com/sheharyar566/api/random-words5/).  
-3. Edit the variable `RAPID_API_KEY` inside the `.env` file with a key generated from RapidAPI. You can find it in the code snippets in any of the APIs.
+## Development
 
-4. To start the server, run:
+1. To test the frontend
 
-```javascript
-npm install &&
-npm run start:dev
+```
+cd frontend
+npm run start
 ```
 
-5. Open `index.html` file with any browser.
+2. To test the full app
+
+```
+firebase serve --only functions,hosting
+```
+  * You have to build first using `npm run build` in frontend (hosting is lookin at `frontend/public`).
+  * Change `isDebug` variable in `frontend/public/gameScript.js` to true.
+
+## How To Deploy
+
+1. Build the frontend
+
+```
+cd frontend
+npm run build
+```
+
+2. Deploy using firebase
+
+```
+firebase deploy
+```
+
 
 Enjoy!
