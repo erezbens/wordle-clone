@@ -220,7 +220,7 @@ button {
 
 .leaderboard {
   -webkit-overflow-scrolling: touch;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
   max-width: var(--game-max-width);
   display: flex;
   flex-direction: column;

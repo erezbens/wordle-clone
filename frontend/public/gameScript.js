@@ -124,17 +124,6 @@ const startGame = (props) => {
   };
 
   const checkRow = () => {
-    const points = 4;
-    showMessage(`GREAT JOB!! Received ${points} points! :)`);
-
-    const event = new CustomEvent("updateScore", {
-      detail: {
-        games: 1,
-        points,
-      },
-    });
-    document.dispatchEvent(event);
-
     const guess = guessRows[currentRow].join("");
     if (currentTile === 5) {
       fetch(`${route}/check/?word=${guess}`)
