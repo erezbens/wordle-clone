@@ -12,6 +12,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+button {
+  cursor: pointer;
+}
+
 #global {
   width: 100vw;
   height: 100vh;
@@ -28,9 +32,10 @@ header {
   justify-content: space-between;
   height: var(--header-height);
   border-bottom: solid 1px #3a3a3c;
+  justify-content: center;
 }
 
-header .title {
+.main-header .title {
   font-size: xx-large;
 }
 
@@ -191,7 +196,7 @@ button {
   justify-content: center;
   align-items: center;
   text-transform: uppercase;
-  -webkit-tap-highlight-color: rgba(0,0,0,0.3);
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
   /* border: 0; */
   /* paddings: 0; */
   margin: 0 6px 0 0;
@@ -200,27 +205,70 @@ button {
 }
 
 .user-details-container {
-  /* border: 1px solid green !important; */
   position: fixed;
-  /* width: 100%; */
-  /* display: flex; */
-  /* justify-content: space-between; */
-  /* align-items: center; */
   margin-left: 12px;
   margin-top: 12px;
-  display: flex;
+  min-width: fit-content;
+  padding: 2px;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
 }
 
-.user-details-container div{
-
-}
-
-
 /*****************************************************************************/
 /* Leaderboard */
+
+.leaderboard {
+  max-width: var(--game-max-width);
+  /* height: calc(100% - var(--header-height)); */
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  /* justify-content: center; */
+  box-sizing: border-box;
+  margin: 0 auto;
+  height: 100vh;
+  background-color: #212121;
+  z-index: 100;
+}
+
+.leaderboard-header {
+  border-bottom: dotted 1px #795548;
+  font-size: x-large;
+  text-decoration: underline;
+}
+
+.leaderboard-headlines {
+  /* border-bottom: 1px solid #795548; */
+  display: grid;
+  font-size: x-large;
+  grid-template-columns: 22% 28% 28% 10%;
+  text-align: start;
+  align-items: center;
+}
+
+.leaderboard-user-details {
+  border-bottom: 1px dotted #795548;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
+  /* text-align: start; */
+  align-items: center;
+  /* padding: 6px 0 0 40px; */
+  /* margin: 1px; */
+}
+
+.leaderboard-current-user {
+  background-color: rgb(22, 112, 49);
+}
+
+.leaderboard-user-details p {
+  /* padding-left: 10%; */
+}
+
+.leaderboard-user-details img {
+  height: 60%;
+}
+.leaderboard-user-details .score {
+}
 
 .leaderboard-button {
   display: flex;
@@ -313,7 +361,6 @@ button {
   font-size: 24px;
   margin-right: 18px;
 }
-
 
 .leaderboard-container {
   position: fixed;

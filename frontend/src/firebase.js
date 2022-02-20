@@ -14,7 +14,6 @@ import {
 import {
   getFirestore,
   query,
-  getDoc,
   getDocs,
   collection,
   where,
@@ -26,7 +25,7 @@ import {
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "wordle-clone-785d4.firebaseapp.com",
-  databaseURL: "https://wordle-clone-785d4-default-rtdb.firebaseio.com",
+  databaseURL: "https://wordle-clone-785d4-default-rtfirestore.firebaseio.com",
   projectId: "wordle-clone-785d4",
   storageBucket: "wordle-clone-785d4.appspot.com",
   messagingSenderId: "1007167674942",
@@ -36,46 +35,39 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db = getFirestore(app);
+const firestore = getFirestore(app);
 
-const updateScore = async (userId, amount) => {
+const updateScore = async ({ games, points, user }) => {
   try {
-    // console.log("update score");
-    // const q = query(collection(db, "users"), where("score", "==", 0));
-    // const docs = await getDocs(q);
-    // console.log(docs);
-    // console.log(docs.docs.length);
-    // console.log(docs.docs);
-    // if (docs.docs.length === 0) {
-    //   console.log("Something's wrong");
-    // } else {
-    //   console.log(docs.docs);
-    // }
-    // const doc = await getDocs(q);
-    // const data = doc.docs[0].data();
-    // const someDoc = doc(db, "users", userId);
-    // const foo = getDoc(doc("users", userId));
-    // await updateDoc(doc, {
-    //   score: 1024317,
-    // });
-    // if (doc.docs.length === 0) {
-    //   await updateDoc(doc.docs[0], {
-    //     score: prevScore + 1,
-    //   });
-    // }
+    const q = query(
+      collection(firestore, "users"),
+      where("uid", "==", user.uid)
+    );
+    const docs = await getDocs(q);
+    const receivedDoc = docs.docs[0];
+    const prevData = receivedDoc.data();
+    const ref = doc(firestore, "users", receivedDoc.id);
+
+    const newData = {
+      ...prevData,
+      points: prevData.points + points,
+      games: prevData.games + games,
+    };
+
+    await updateDoc(ref, newData);
   } catch (err) {
     console.error(err);
-    // alert(err.message);
   }
 };
 
 const getLeaderboard = async () => {
   try {
-    // console.log("hi");
-    // const q = query(collection(db, "users"));
-    // const docs = await getDocs(q);
-    // console.log(q);
-    // console.log(docs);
+    const q = query(collection(firestore, "users"));
+    const docs = await getDocs(q);
+    const allUsersData = docs.docs.map((doc) => doc.data());
+    allUsersData.sort((u1, u2) => u2.score - u1.score);
+
+    return allUsersData.slice(0, 10);
   } catch (err) {
     console.error(err);
     alert(err.message);
@@ -88,10 +80,13 @@ const signInWithGoogle = async () => {
     const res = await signInWithPopup(auth, googleProvider);
     const user = res.user;
 
-    const q = query(collection(db, "users"), where("uid", "==", user.uid));
+    const q = query(
+      collection(firestore, "users"),
+      where("uid", "==", user.uid)
+    );
     const docs = await getDocs(q);
     if (docs.docs.length === 0) {
-      await addDoc(collection(db, "users"), {
+      await addDoc(collection(firestore, "users"), {
         uid: user.uid,
         name: user.displayName,
         authProvider: "google",
@@ -121,7 +116,7 @@ const registerWithEmailAndPassword = async (name, email, password) => {
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
-    await addDoc(collection(db, "users"), {
+    await addDoc(collection(firestore, "users"), {
       uid: user.uid,
       name,
       authProvider: "local",
@@ -159,7 +154,7 @@ const logout = () => {
 
 export {
   auth,
-  db,
+  firestore,
   signInWithGoogle,
   logInWithEmailAndPassword,
   registerWithEmailAndPassword,

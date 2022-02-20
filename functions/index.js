@@ -32,8 +32,6 @@ app.get("/word", (req, res) => {
 });
 
 app.get("/check", (req, res) => {
-  // console.log(req.query.word);
-
   const options = {
     method: "GET",
     url: "https://twinword-word-graph-dictionary.p.rapidapi.com/association/",
@@ -47,15 +45,11 @@ app.get("/check", (req, res) => {
   axios
     .request(options)
     .then((response) => {
-      // console.log(response.data);
       res.json(response.data.result_msg);
     })
     .catch((error) => {
       console.error(error);
     });
 });
-
-// Create and Deploy Your First Cloud Functions
-// https://firebase.google.com/docs/functions/write-firebase-functions
 
 exports.app = functions.region("europe-west1").https.onRequest(app);
