@@ -2,19 +2,8 @@ const startGame = (props) => {
   const tileDisplay = document.getElementById("board");
   const messageDisplay = document.querySelector(".message-container");
 
-  // const event = new CustomEvent("updateScore", {
-  //   detail: {
-  //     games: 1,
-  //     points: 3,
-  //   },
-  //   // bubbles: true,
-  //   // cancelable: true,
-  //   // composed: false,
-  // });
-  // document.dispatchEvent(event);
-
   let wordle;
-  const isDebug = true;
+  const isDebug = false;
   const route = isDebug
     ? "http://localhost:5001/wordle-clone-785d4/europe-west1/app"
     : "https://europe-west1-wordle-clone-785d4.cloudfunctions.net/app";
@@ -135,19 +124,19 @@ const startGame = (props) => {
   };
 
   const checkRow = () => {
+    const points = 4;
+    showMessage(`GREAT JOB!! Received ${points} points! :)`);
+
+    const event = new CustomEvent("updateScore", {
+      detail: {
+        games: 1,
+        points,
+      },
+    });
+    document.dispatchEvent(event);
+
     const guess = guessRows[currentRow].join("");
     if (currentTile === 5) {
-      const event = new CustomEvent("updateScore", {
-        detail: {
-          games: 1,
-          points: 3,
-        },
-        // bubbles: true,
-        // cancelable: true,
-        // composed: false,
-      });
-      document.dispatchEvent(event);
-
       fetch(`${route}/check/?word=${guess}`)
         .then((res) => res.json())
         .then((json) => {
@@ -165,9 +154,6 @@ const startGame = (props) => {
                   games: 1,
                   points,
                 },
-                // bubbles: true,
-                // cancelable: true,
-                // composed: false,
               });
               document.dispatchEvent(event);
             } else {
@@ -179,9 +165,6 @@ const startGame = (props) => {
                     games: 1,
                     points: -3,
                   },
-                  // bubbles: true,
-                  // cancelable: true,
-                  // composed: false,
                 });
                 document.dispatchEvent(event);
               }

@@ -55,13 +55,19 @@ function Dashboard() {
     setShowLeaderboard((prev) => !prev);
   };
 
+  const refreshPage = (e) => {
+    e.preventDefault();
+    window.location.reload();
+  };
+
   return (
     <>
       <div className="user-details-container">
         <UserDetails name={name} user={user} logout={logout} />
         <button onClick={viewLeaderboard}>
-          {showLeaderboard ? "Back To Game" : "Show Leaderboard"}
+          {showLeaderboard ? "Back To Game" : "Leaderboard"}
         </button>
+        <button onClick={refreshPage}>Refresh</button>
       </div>
       <header className="main-header">
         <div className="title">Wordle Clone</div>

@@ -65,9 +65,9 @@ const getLeaderboard = async () => {
     const q = query(collection(firestore, "users"));
     const docs = await getDocs(q);
     const allUsersData = docs.docs.map((doc) => doc.data());
-    allUsersData.sort((u1, u2) => u2.score - u1.score);
+    allUsersData.sort((u1, u2) => u2.points - u1.points);
 
-    return allUsersData.slice(0, 10);
+    return allUsersData.slice(0, 7);
   } catch (err) {
     console.error(err);
     alert(err.message);
@@ -92,7 +92,8 @@ const signInWithGoogle = async () => {
         authProvider: "google",
         email: user.email,
         photoURL: user.photoURL,
-        score: 0,
+        points: 0,
+        games: 0,
       });
     }
     await setPersistence(auth, browserLocalPersistence);
