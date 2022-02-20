@@ -8,6 +8,8 @@ import {
   sendPasswordResetEmail,
   signOut,
   signInAnonymously,
+  setPersistence,
+  browserLocalPersistence,
 } from "firebase/auth";
 import {
   getFirestore,
@@ -98,6 +100,7 @@ const signInWithGoogle = async () => {
         score: 0,
       });
     }
+    await setPersistence(auth, browserLocalPersistence);
   } catch (err) {
     console.error(err);
     alert(err.message);
@@ -107,6 +110,7 @@ const signInWithGoogle = async () => {
 const logInWithEmailAndPassword = async (email, password) => {
   try {
     await signInWithEmailAndPassword(auth, email, password);
+    await setPersistence(auth, browserLocalPersistence);
   } catch (err) {
     console.error(err);
     alert(err.message);
