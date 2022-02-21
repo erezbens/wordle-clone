@@ -4,7 +4,6 @@ const express = require("express");
 const cors = require("cors");
 const functions = require("firebase-functions");
 require("dotenv").config();
-const words = require("./words");
 
 const app = express();
 app.use(cors());
@@ -12,7 +11,6 @@ app.use(cors());
 // app.listen(PORT, () => console.log("Server running on port " + PORT));
 
 app.get("/word", (req, res) => {
-  console.log("hi");
   // const options = {
   //   method: "GET",
   //   url: "https://random-words5.p.rapidapi.com/getMultipleRandom",
