@@ -13,7 +13,7 @@ const Leaderboard = ({ leaders, currentUser }) => {
             }`}
           >
             <p>#{index + 1}</p>
-            <img src={user.photoURL} />
+            <img src={user.photoURL} alt="" />
             <div>{user.name}</div>
             <div className="score">{user.points}</div>
           </div>

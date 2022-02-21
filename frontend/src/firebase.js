@@ -122,6 +122,8 @@ const registerWithEmailAndPassword = async (name, email, password) => {
       name,
       authProvider: "local",
       email,
+      games: 0,
+      points: 0,
     });
   } catch (err) {
     console.error(err);
