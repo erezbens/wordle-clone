@@ -1,27 +1,34 @@
-const startGame = (props) => {
+import { words, dictionary } from "./dictionary.js";
+
+const startGame = async () => {
   const tileDisplay = document.getElementById("board");
   const messageDisplay = document.querySelector(".message-container");
 
   let wordle;
-  const isDebug = false;
-  const route = isDebug
-    ? "http://localhost:5001/wordle-clone-785d4/europe-west1/app"
-    : "https://europe-west1-wordle-clone-785d4.cloudfunctions.net/app";
+  // const isDebug = false;
+  // const route = isDebug
+  //   ? "http://localhost:5001/wordle-clone-785d4/europe-west1/app"
+  //   : "https://europe-west1-wordle-clone-785d4.cloudfunctions.net/app";
 
-  const getWordle = () => {
-    fetch(`${route}/word`)
-      .then((res) => res.json())
-      .then((json) => {
-        if (isDebug) {
-          console.debug(json);
-        }
-        wordle = json.toUpperCase();
-      })
+  const getWordle = async () => {
+    const randomWord = words[Math.floor(Math.random() * words.length)];
 
-      .catch((e) => console.error(e));
+    wordle = randomWord.toUpperCase();
+
+    // I used to fetch the word from rapidAPI
+    // try {
+    //   let res = await fetch(`${route}/word`);
+    //   res = res.json();
+    //   if (isDebug) {
+    //     console.debug(res);
+    //   }
+    //   wordle = res.toUpperCase();
+    // } catch (e) {
+    //   console.error(e);
+    // }
   };
 
-  getWordle();
+  await getWordle();
 
   const keys = [
     "Q",
@@ -123,48 +130,47 @@ const startGame = (props) => {
     }
   };
 
+  const isValidWord = (word) => {
+    return dictionary.includes(word) || words.includes(word) ? true : false;
+  };
+
   const checkRow = () => {
     const guess = guessRows[currentRow].join("");
     if (currentTile === 5) {
-      fetch(`${route}/check/?word=${guess}`)
-        .then((res) => res.json())
-        .then((json) => {
-          if (json === "Entry word not found") {
-            showMessage("Word not in dictionary");
-            return;
-          } else {
-            flipTiles();
-            if (guess === wordle) {
-              const points = 6 - currentRow;
-              showMessage(`GREAT JOB!! Received ${points} points! :)`);
+      if (isValidWord(guess.toLowerCase()) === false) {
+        showMessage("Word not in dictionary");
+        return;
+      } else {
+        flipTiles();
+        if (guess === wordle) {
+          const points = 6 - currentRow;
+          showMessage(`GREAT JOB!! Received ${points} points! :)`);
 
-              const event = new CustomEvent("updateScore", {
-                detail: {
-                  games: 1,
-                  points,
-                },
-              });
-              document.dispatchEvent(event);
-            } else {
-              if (currentRow >= 5) {
-                showMessage("Game Over :( You lost 3 points");
+          const event = new CustomEvent("updateScore", {
+            detail: {
+              games: 1,
+              points,
+            },
+          });
+          document.dispatchEvent(event);
+        } else {
+          if (currentRow >= 5) {
+            showMessage("Game Over :( You lost 3 points");
 
-                const event = new CustomEvent("updateScore", {
-                  detail: {
-                    games: 1,
-                    points: -3,
-                  },
-                });
-                document.dispatchEvent(event);
-              }
-              if (currentRow < 5) {
-                currentRow++;
-                currentTile = 0;
-              }
-            }
+            const event = new CustomEvent("updateScore", {
+              detail: {
+                games: 1,
+                points: -3,
+              },
+            });
+            document.dispatchEvent(event);
           }
-        })
-        .catch((e) => console.error(e));
+          if (currentRow < 5) {
+            currentRow++;
+            currentTile = 0;
+          }
+        }
+      }
     }
   };
 
