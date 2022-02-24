@@ -3,7 +3,7 @@ import { words, dictionary } from "./dictionary.js";
 const startGame = async () => {
   const tileDisplay = document.getElementById("board");
   const messageDisplay = document.querySelector(".message-container");
-
+  let gameOver = false;
   let wordle;
   // const isDebug = false;
   // const route = isDebug
@@ -134,9 +134,19 @@ const startGame = async () => {
     return dictionary.includes(word) || words.includes(word) ? true : false;
   };
 
+  const updateScore = (points) => {
+    const event = new CustomEvent("updateScore", {
+      detail: {
+        games: 1,
+        points,
+      },
+    });
+    document.dispatchEvent(event);
+  };
+
   const checkRow = () => {
     const guess = guessRows[currentRow].join("");
-    if (currentTile === 5) {
+    if (currentTile === 5 && !gameOver) {
       if (isValidWord(guess.toLowerCase()) === false) {
         showMessage("Word not in dictionary");
         return;
@@ -145,25 +155,13 @@ const startGame = async () => {
         if (guess === wordle) {
           const points = 6 - currentRow;
           showMessage(`GREAT JOB!! Received ${points} points! :)`);
-
-          const event = new CustomEvent("updateScore", {
-            detail: {
-              games: 1,
-              points,
-            },
-          });
-          document.dispatchEvent(event);
+          updateScore(points);
+          gameOver = true;
         } else {
           if (currentRow >= 5) {
             showMessage("Game Over :( You lost 3 points");
-
-            const event = new CustomEvent("updateScore", {
-              detail: {
-                games: 1,
-                points: -3,
-              },
-            });
-            document.dispatchEvent(event);
+            updateScore(-3);
+            gameOver = true;
           }
           if (currentRow < 5) {
             currentRow++;
