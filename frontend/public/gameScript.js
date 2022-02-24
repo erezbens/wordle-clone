@@ -5,7 +5,7 @@ const startGame = async () => {
   const messageDisplay = document.querySelector(".message-container");
   let gameOver = false;
   let wordle;
-  // const isDebug = false;
+  const isDebug = true;
   // const route = isDebug
   //   ? "http://localhost:5001/wordle-clone-785d4/europe-west1/app"
   //   : "https://europe-west1-wordle-clone-785d4.cloudfunctions.net/app";
@@ -14,6 +14,7 @@ const startGame = async () => {
     const randomWord = words[Math.floor(Math.random() * words.length)];
 
     wordle = randomWord.toUpperCase();
+    isDebug && console.log(wordle);
 
     // I used to fetch the word from rapidAPI
     // try {
@@ -189,6 +190,8 @@ const startGame = async () => {
     )
       return;
 
+    key.classList.remove("yellow-overlay");
+    key.classList.remove("grey-overlay");
     key.classList.add(color);
   };
 

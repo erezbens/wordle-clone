@@ -1,14 +1,5 @@
-function UserDetails({ name, user, logout }) {
-  return (
-    <>
-      <div>{name}</div>
-      <div>
-        <button className="logout-button" onClick={logout}>
-          Logout
-        </button>
-      </div>
-    </>
-  );
+function UserDetails({ name }) {
+  return <div>{name}</div>;
 }
 
 export default UserDetails;
