@@ -18,7 +18,7 @@ button {
 
 #global {
   width: 100vw;
-  height: 100vh;
+  height: 96vh;
   box-sizing: border-box;
   --header-height: 100px;
   --game-max-width: 500px;
@@ -221,7 +221,6 @@ header .title {
 }
 
 .leaderboard-header {
-    border: 1px solid green !important;
   border-bottom: dotted 1px #795548;
   /* font-size: x-large; */
   display: flex;
@@ -279,7 +278,6 @@ header .title {
 
 button:hover {
   transition: 0.5s;
-  box-shadow: 1px 1px 0 #d4cbb2;
 }
 
 .leaderboard-button span:nth-child(2) {
