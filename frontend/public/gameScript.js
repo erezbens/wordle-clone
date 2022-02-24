@@ -181,6 +181,14 @@ const startGame = async () => {
 
   const addColorToKey = (letter, color) => {
     const key = document.getElementById(letter);
+    const prevKeyColor = key.className;
+
+    if (
+      prevKeyColor === "green-overlay" ||
+      (prevKeyColor === "yellow-overlay" && color !== "green-overlay")
+    )
+      return;
+
     key.classList.add(color);
   };
 
@@ -200,6 +208,7 @@ const startGame = async () => {
         checkWordle = checkWordle.replace(guess.letter, "");
       }
     });
+
     guess.forEach((guess, index) => {
       if (guess.letter === wordle[index]) {
         guess.color = "green-overlay";
