@@ -18,7 +18,7 @@ button {
 
 #global {
   width: 100vw;
-  height: 96vh;
+  height: 100vh;
   box-sizing: border-box;
   --header-height: 100px;
   --game-max-width: 500px;
@@ -46,8 +46,8 @@ header {
   align-items: start;
   padding: 6px 0px 0px 6px;
   -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
-  box-sizing: border-box;         /* Opera/IE 8+ */
+  -moz-box-sizing: border-box; /* Firefox, other Gecko */
+  box-sizing: border-box; /* Opera/IE 8+ */
 }
 
 header .title {
@@ -208,18 +208,20 @@ header .title {
 
 .leaderboard {
   -webkit-overflow-scrolling: touch;
-  /* overflow-y: scroll; */
   max-width: var(--game-max-width);
   display: flex;
   flex-direction: column;
   text-align: center;
   box-sizing: border-box;
   margin: 0 auto;
-  height: 100vh;
   background-color: #2f3035;
   z-index: 100;
+  height: calc(100% - var(--header-height));
 }
 
+.dashboard { 
+  
+}
 .leaderboard-header {
   border-bottom: dotted 1px #795548;
   /* font-size: x-large; */
@@ -229,19 +231,12 @@ header .title {
   align-content: center;
 }
 
-.leaderboard-headlines {
-  display: grid;
-  font-size: x-large;
-  grid-template-columns: 22% 28% 28% 10%;
-  text-align: start;
-  align-items: center;
-}
-
 .leaderboard-user-details {
   border-bottom: 1px dotted #795548;
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
-  min-height: 90px;
+  min-height: 10% !important;
+  /* height: 10%; */
   align-items: center;
 }
 
@@ -259,18 +254,6 @@ header .title {
 .leaderboard-user-details .score {
 }
 
-.leaderboard-button {
-  /* display: flex; */
-  /* padding: 10px 45px; */
-  /* text-decoration: none; */
-  /* font-family: "Poppins", sans-serif; */
-  /* font-size: 40px; */
-  /* color: white; */
-  /* background: #6225e6; */
-  /* transition: 1s; */
-  /* box-shadow: 2px 2px 0 black; */
-  /* transform: skewX(10deg); */
-}
 
 .leaderboard-button:focus {
   outline: none;

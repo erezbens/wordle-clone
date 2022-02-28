@@ -61,7 +61,7 @@ function Dashboard() {
   };
 
   return (
-    <>
+    <div className="dashboard">
       <header>
         <div className="top-left-container">
           <button onClick={logout}>Logout</button>
@@ -71,16 +71,13 @@ function Dashboard() {
           </button>
         </div>
         <div className="top-center-container">
-          <div className="user-details">
-            {name ? `Logged in as ${name}` : ``}
-          </div>
           <div className="title">Wordle</div>
         </div>
         <div className="top-right-container"></div>
       </header>
       {showLeaderboard && <Leaderboard currentUser={user} leaders={leaders} />}
       <div>{!showLeaderboard && <Game user={user} />}</div>
-    </>
+    </div>
   );
 }
 

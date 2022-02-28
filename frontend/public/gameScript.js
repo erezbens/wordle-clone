@@ -5,7 +5,7 @@ const startGame = async () => {
   const messageDisplay = document.querySelector(".message-container");
   let gameOver = false;
   let wordle;
-  const isDebug = true;
+  const isDebug = false;
   // const route = isDebug
   //   ? "http://localhost:5001/wordle-clone-785d4/europe-west1/app"
   //   : "https://europe-west1-wordle-clone-785d4.cloudfunctions.net/app";
