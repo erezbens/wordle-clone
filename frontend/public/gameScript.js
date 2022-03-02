@@ -224,6 +224,29 @@ const startGame = async () => {
       }, 550 * index);
     });
   };
+
+  var isAlpha = function(ch){
+    return /^[A-Za-z]{1,1}$/.test(ch)
+  }
+
+  document.addEventListener("keydown", e => {
+    switch (e.key) {
+      case 'Enter':
+        checkRow();
+        break;
+        
+      case 'Backspace':
+        deleteLetter();
+        break;
+  
+      default:
+        if(isAlpha(e.key)){
+          addLetter(e.key.toUpperCase());
+        }
+        break;
+    }
+  });
+
 };
 
 startGame();
