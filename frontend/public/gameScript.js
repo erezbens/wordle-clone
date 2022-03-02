@@ -228,28 +228,25 @@ const startGame = async () => {
     });
   };
 
-  var isAlpha = function(ch){
-    return /^[A-Za-z]{1,1}$/.test(ch)
-  }
+  const isAlpha = (ch) => /^[A-Za-z]{1,1}$/.test(ch);
 
-  document.addEventListener("keydown", e => {
+  document.addEventListener("keydown", (e) => {
     switch (e.key) {
-      case 'Enter':
+      case "Enter":
         checkRow();
         break;
-        
-      case 'Backspace':
+
+      case "Backspace":
         deleteLetter();
         break;
-  
+
       default:
-        if(isAlpha(e.key)){
+        if (isAlpha(e.key)) {
           addLetter(e.key.toUpperCase());
         }
         break;
     }
   });
-
 };
 
 startGame();
