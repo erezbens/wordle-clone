@@ -1,12 +1,10 @@
 const Leaderboard = ({ leaders, currentUser }) => {
-  console.log(currentUser);
   return (
     <div className="leaderboard">
       <header className="leaderboard-header">
         <div className="title">All Time Leaderboard</div>
       </header>
       {leaders.map((user, index) => {
-        console.log(user.uid);
         return (
           <div
             key={user.uid}
