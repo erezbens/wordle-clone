@@ -229,7 +229,6 @@ const startGame = async () => {
     return /^[A-Za-z]{1,1}$/.test(ch)
   }
 
-  
   document.addEventListener("keydown", e => {
     switch (e.key) {
       case 'Enter':
