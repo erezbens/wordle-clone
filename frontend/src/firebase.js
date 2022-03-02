@@ -67,7 +67,7 @@ const getLeaderboard = async () => {
     const allUsersData = docs.docs.map((doc) => doc.data());
     allUsersData.sort((u1, u2) => u2.points - u1.points);
 
-    return allUsersData.slice(0, 7);
+    return allUsersData.slice(0, 10);
   } catch (err) {
     console.error(err);
     alert(err.message);

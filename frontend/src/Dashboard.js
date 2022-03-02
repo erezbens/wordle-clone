@@ -9,7 +9,7 @@ import {
   getLeaderboard,
 } from "./firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
-import GameClone from "./GameClone";
+import Game from "./Game";
 import UserDetails from "./UserDetails";
 import Leaderboard from "./Leaderboard";
 
@@ -61,20 +61,23 @@ function Dashboard() {
   };
 
   return (
-    <>
-      <div className="user-details-container">
-        <UserDetails name={name} user={user} logout={logout} />
-        <button onClick={viewLeaderboard}>
-          {showLeaderboard ? "Back To Game" : "Leaderboard"}
-        </button>
-        <button onClick={refreshPage}>Refresh</button>
-      </div>
-      <header className="main-header">
-        <div className="title">Wordle Clone</div>
+    <div className="dashboard">
+      <header>
+        <div className="top-left-container">
+          <button onClick={logout}>Logout</button>
+          <button onClick={refreshPage}>Refresh</button>
+          <button onClick={viewLeaderboard} className="leaderboard-button">
+            {showLeaderboard ? "<< Back" : "Leaderboard"}
+          </button>
+        </div>
+        <div className="top-center-container">
+          <div className="title">Wordle</div>
+        </div>
+        <div className="top-right-container"></div>
       </header>
       {showLeaderboard && <Leaderboard currentUser={user} leaders={leaders} />}
-      <div>{!showLeaderboard && <GameClone user={user} />}</div>
-    </>
+      <div>{!showLeaderboard && <Game user={user} />}</div>
+    </div>
   );
 }
 
