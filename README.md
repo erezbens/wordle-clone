@@ -4,7 +4,7 @@ This is a remake for the famous Wordle game, using only html, css and javascript
 
 ## Requirements
 
-The app was build using node v16
+The app was built using node v16
 
 ## Development
 
