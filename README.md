@@ -1,42 +1,36 @@
 # Wordle Clone
 
-This is a remake for the famous Wordle game, using only html, css and javascript.
+This is a remake for the famous Wordle game, using html, css and javascript.
 
 ## Requirements
 
-The app was built using node v16
+The app was built using node v16, so you need node and npm on your local machine.
 
 ## Development
 
-1. To test the frontend
+### First run
+
+* Install dependencies
+
+```
+cd frontend
+npm install
+```
+
+* Init firebase hosting and test locally
+
+1. Run `firebase init`
+2. Select hosting
+3. Rewrite all urls / (SPA)
+4. Dont override `index.html`
+
+### Frontend Development
 
 ```
 cd frontend
 npm run start
 ```
 
-2. To test the full app
-
-```
-firebase serve --only functions,hosting
-```
-  * You have to build first using `npm run build` in frontend (hosting is lookin at `frontend/public`).
-  * Change `isDebug` variable in `frontend/public/gameScript.js` to true.
-
-## How To Deploy
-
-1. Build the frontend
-
-```
-cd frontend
-npm run build
-```
-
-2. Deploy using firebase
-
-```
-firebase deploy
-```
-
+* To test the full app run `test.sh` from the root folder.
 
 Enjoy!
