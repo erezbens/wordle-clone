@@ -20,7 +20,6 @@ app.get("/word", (req, res) => {
   //     "x-rapidapi-key": process.env.RAPID_API_KEY,
   //   },
   // };
-
   // axios
   //   .request(options)
   //   .then((response) => {
@@ -29,33 +28,30 @@ app.get("/word", (req, res) => {
   //   .catch((error) => {
   //     console.error(error);
   //   });
-
-  const randomWord = words[Math.floor(Math.random() * words.length)];
-
-  return Promise.resolve(randomWord);
+  // const randomWord = words[Math.floor(Math.random() * words.length)];
+  // return Promise.resolve(randomWord);
   // return res.json(Promise.resolve(randomWord));
   // return res.json(randomWord);
 });
 
 app.get("/check", (req, res) => {
-  const options = {
-    method: "GET",
-    url: "https://twinword-word-graph-dictionary.p.rapidapi.com/association/",
-    params: { entry: req.query.word },
-    headers: {
-      "x-rapidapi-host": "twinword-word-graph-dictionary.p.rapidapi.com",
-      "x-rapidapi-key": process.env.RAPID_API_KEY,
-    },
-  };
-
-  axios
-    .request(options)
-    .then((response) => {
-      res.json(response.data.result_msg);
-    })
-    .catch((error) => {
-      console.error(error);
-    });
+  // const options = {
+  //   method: "GET",
+  //   url: "https://twinword-word-graph-dictionary.p.rapidapi.com/association/",
+  //   params: { entry: req.query.word },
+  //   headers: {
+  //     "x-rapidapi-host": "twinword-word-graph-dictionary.p.rapidapi.com",
+  //     "x-rapidapi-key": process.env.RAPID_API_KEY,
+  //   },
+  // };
+  // axios
+  //   .request(options)
+  //   .then((response) => {
+  //     res.json(response.data.result_msg);
+  //   })
+  //   .catch((error) => {
+  //     console.error(error);
+  //   });
 });
 
 exports.app = functions.region("europe-west1").https.onRequest(app);
