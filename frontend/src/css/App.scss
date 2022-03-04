@@ -17,6 +17,7 @@ button {
   cursor: pointer;
 }
 
+
 #global {
   width: 100vw;
   height: 100vh;
@@ -24,33 +25,6 @@ button {
   --header-height: 100px;
   --game-max-width: 500px;
   --keyboard-height: 200px;
-}
-
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  justify-content: center;
-  margin: 2px 8px;
-  div {
-    flex: 1;
-    min-width: -webkit-min-content;
-      // border: 1px solid green !important;
-  }
-
-  &.hide {
-
-  }
-
-
-  /* width: 100%; */
-  /* border: 1px solid green !important; */
-  /* flex-direction: column; */
-  /* align-items: center; */
-  /* justify-content: space-between; */
-  /* height: var(--header-height); */
-  /* border-bottom: solid 1px #3a3a3c; */
-  /* justify-content: center; */
 }
 
 .top-left-container {
@@ -100,6 +74,16 @@ header .title {
   position: fixed;
   width: 100%;
   text-align: center;
+}
+
+.refresh-button {
+  align-self: center;
+    // border: 1px solid green !important;
+  // margin: 0 auto;
+    &:hover {
+      color: green;
+      cursor: pointer;
+    }
 }
 
 /**************************************************************/
@@ -218,60 +202,6 @@ header .title {
 }
 
 /*****************************************************************************/
-/* Leaderboard */
-
-.leaderboard {
-  -webkit-overflow-scrolling: touch;
-  max-width: var(--game-max-width);
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  box-sizing: border-box;
-  margin: 0 auto;
-  background-color: #2f3035;
-  z-index: 100;
-  height: calc(100% - var(--header-height));
-}
-
-.dashboard { 
-  
-}
-.leaderboard-header {
-  border-bottom: dotted 1px #795548;
-  /* font-size: x-large; */
-  display: flex;
-  justify-content: center;
-  /* text-decoration: underline; */
-  align-content: center;
-}
-
-.leaderboard-user-details {
-  border-bottom: 1px dotted #795548;
-  display: grid;
-  grid-template-columns: 25% 25% 25% 25%;
-  min-height: 10% !important;
-  /* height: 10%; */
-  align-items: center;
-}
-
-.leaderboard-current-user {
-  background-color: rgb(22, 112, 49);
-}
-
-.leaderboard-user-details p {
-  /* padding-left: 10%; */
-}
-
-.leaderboard-user-details img {
-  height: 60%;
-}
-.leaderboard-user-details .score {
-}
-
-
-.leaderboard-button:focus {
-  outline: none;
-}
 
 button:hover {
   transition: 0.5s;

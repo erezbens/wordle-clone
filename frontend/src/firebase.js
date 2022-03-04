@@ -54,7 +54,7 @@ const updateScore = async ({ games, points, user }) => {
       games: prevData.games + games,
     };
 
-    await updateDoc(ref, newData);
+    // await updateDoc(ref, newData);
   } catch (err) {
     console.error(err);
   }

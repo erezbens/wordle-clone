@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ReactTooltip from "react-tooltip";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { auth, firestore, logout, getLeaderboard } from "./firebase";
@@ -8,16 +9,18 @@ import Header from "./Header";
 
 import "./css/Welcome.scss";
 
-function WelcomePage({
-  setShowBackButton,
-  setBackButtonNavigation,
-  showBackButton,
-}) {
+function WelcomePage({ setShowBackButton, showBackButton }) {
   const [user, loading, error] = useAuthState(auth);
   const [name, setName] = useState("");
   const [leaders, setLeaders] = useState([]);
 
+  console.log(user);
+
   const navigate = useNavigate();
+
+  useEffect(() => {
+    setShowBackButton(false);
+  }, [setShowBackButton]);
 
   useEffect(() => {
     const fetchLeaderboard = async () => {
@@ -50,25 +53,39 @@ function WelcomePage({
     navigate("/play");
   };
 
+  const showLeaderboard = (e) => {
+    e.preventDefault();
+    setShowBackButton(true);
+    navigate("/leaderboard");
+  };
+
   // useEffect(() => {
   //   if (loading) return;backToWelcomePage
   //   if (!user) return navigate("/");
   //   fetchUserName();
   // }, [user, loading]);
 
-  // const refreshPage = (e) => {
-  //   e.preventDefault();
-  //   window.location.reload();
-  // };
-
   return (
     <>
-      <Header showBackButton={showBackButton} />
+      <Header showBackButton={showBackButton} isLoggedIn={user} />
       <div className="welcome-page">
-        <div onClick={playGame}>PLAY</div>
-        <div>LEADERBOARD</div>
-        <div>ABOUT</div>
-        <div>SIGN IN</div>
+        <div
+          className={user ? "" : "disabled"}
+          onClick={playGame}
+          data-tip={user ? "" : `You need to login first`}
+        >
+          PLAY
+        </div>
+        <div onClick={showLeaderboard}>LEADERBOARD</div>
+        <div onClick={() => {}}>ABOUT</div>
+        {/* <div onClick={() => {}}>SIGN IN</div> */}
+        <ReactTooltip
+          delayHide={30}
+          place="right"
+          type="info"
+          effect="float"
+          border={true}
+        />
       </div>
     </>
   );

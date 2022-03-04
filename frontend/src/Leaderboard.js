@@ -1,25 +1,28 @@
-const Leaderboard = ({ leaders, currentUser }) => {
+import Header from "./Header";
+import "./css/Leaderboard.scss";
+
+const Leaderboard = ({ leaders, currentUser = { uid: "foo" } }) => {
   return (
-    <div className="leaderboard">
-      <header className="leaderboard-header">
-        <div className="title">All Time Leaderboard</div>
-      </header>
-      {leaders.map((user, index) => {
-        return (
-          <div
-            key={user.uid}
-            className={`leaderboard-user-details ${
-              currentUser.uid === user.uid ? "leaderboard-current-user" : ""
-            }`}
-          >
-            <p>#{index + 1}</p>
-            <img src={user.photoURL} alt="" />
-            <div>{user.name}</div>
-            <div className="score">{user.points}</div>
-          </div>
-        );
-      })}
-    </div>
+    <>
+      <Header showBackButton={true} />
+      <div className="leaderboard">
+        {leaders.map((user, index) => {
+          return (
+            <div
+              key={user.uid}
+              className={`leaderboard-user-details ${
+                currentUser.uid === user.uid ? "leaderboard-current-user" : ""
+              }`}
+            >
+              <p>#{index + 1}</p>
+              <img src={user.photoURL} alt="" />
+              <div>{user.name}</div>
+              <div className="score">{user.points}</div>
+            </div>
+          );
+        })}
+      </div>
+    </>
   );
 };
 

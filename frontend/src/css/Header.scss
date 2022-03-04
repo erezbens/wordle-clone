@@ -1,0 +1,26 @@
+header {
+  display: flex;
+  border-bottom: 1px solid grey;
+  align-items: center;
+  margin: 2px 8px;
+  .button {
+    flex: 1;
+    justify-content: center;
+    width: 23%;
+    min-width: -webkit-min-content;
+    cursor: pointer;
+    text-align: center;
+    &:hover {
+      color: green;
+    }
+  }
+  .right-button {
+    margin-left: 12em;
+  }
+  .left-button {
+    margin-right: 12em;
+  }
+  .hide {
+    visibility: hidden;
+  }
+}

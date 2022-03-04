@@ -217,11 +217,13 @@ const startGame = async () => {
           showMessage(`GREAT JOB!! Received ${points} points! :)`);
           updateScore(points);
           gameOver = true;
+          showRefreshButton();
         } else {
           if (currentRow >= 5) {
             showMessage("Game Over :( You lost 3 points");
             updateScore(-3);
             gameOver = true;
+            showRefreshButton();
           }
           if (currentRow < 5) {
             currentRow++;
@@ -230,6 +232,14 @@ const startGame = async () => {
         }
       }
     }
+  };
+
+  const showRefreshButton = () => {
+    const refreshButton = document.createElement("p");
+    refreshButton.textContent = "Play Again!";
+    refreshButton.classList.add("refresh-button");
+    refreshButton.addEventListener("click", () => window.location.reload());
+    messageDisplay.append(refreshButton);
   };
 
   const showMessage = (message) => {

@@ -13,6 +13,7 @@ import Leaderboard from "./Leaderboard";
 import { updateScore } from "./firebase";
 
 import Login from "./Login";
+import Logout from "./Logout";
 import Register from "./Register";
 import Reset from "./Reset";
 import Dashboard from "./Dashboard";
@@ -26,15 +27,7 @@ function App() {
   const [showBackButton, setShowBackButton] = useState(false);
   const backButtonRef = useRef();
 
-  const setBackButtonNavigation = (cb) => {
-    console.log("hi");
-    if (backButtonRef.current) {
-      console.log(cb);
-      console.log(backButtonRef.current);
-      backButtonRef.current.addEventListener("click", cb);
-    }
-  };
-
+  console.log(user);
   useEffect(() => {
     const fetchLeaderboard = async () => {
       const leaderboard = await getLeaderboard();
@@ -47,6 +40,7 @@ function App() {
 
   const updateScoreEventHandler = async (e) => {
     try {
+      console.log(user);
       await updateScore({
         games: e.detail.games,
         points: e.detail.points,
@@ -61,30 +55,28 @@ function App() {
     <div>
       <Router>
         <Routes>
-          {/* <Route exact path="/" element={<Login />} /> */}
           <Route
             path="/"
             element={
               <WelcomePage
                 setShowBackButton={setShowBackButton}
-                setBackButtonNavigation={setBackButtonNavigation}
                 showBackButton={showBackButton}
+                user={user}
               />
             }
           />
           <Route
             path="/play"
-            element={
-              <Play
-                updateScore={updateScoreEventHandler}
-                backButtonRef={backButtonRef}
-              />
-            }
+            element={<Play updateScore={updateScoreEventHandler} />}
           />
-          {/* <Route exact path="/register" element={<Register />} /> */}
-          {/* <Route exact path="/reset" element={<Reset />} /> */}
-          {/* <Route exact path="/dashboard" element={<Dashboard />} /> */}
-          {/* <Route exact path="/leaderboard" element={<Leaderboard />} /> */}
+          <Route
+            exact
+            path="/leaderboard"
+            element={<Leaderboard /*currentUser={user} */ leaders={leaders} />}
+          />
+          <Route exact path="/about" element={<div />} />
+          <Route exact path="/login" element={<Login />} />
+          <Route exact path="/logout" element={<Logout />} />
         </Routes>
       </Router>
     </div>

@@ -14,10 +14,10 @@ const Play = ({ updateScore }) => {
     return () => {
       if (gameScript) {
         document.body.removeChild(gameScript);
-        // document.removeEventListener("updateScore");
+        document.removeEventListener("updateScore", updateScore);
       }
     };
-  }, []);
+  }, [updateScore]);
 
   // return <div />;
   return <Header showBackButton={true} />;

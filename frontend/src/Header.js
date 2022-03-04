@@ -1,21 +1,52 @@
 import { Navigate, useNavigate } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+
+import "./css/Header.scss";
+import { auth, logout } from "./firebase";
 
 const Header = ({ showBackButton }) => {
+  const [user, loading, error] = useAuthState(auth);
+
   const navigate = useNavigate();
+  const loginButtonText = user ? "logout" : "login";
 
   const back = (e) => {
-    console.log("hi");
     e.preventDefault();
     navigate("/");
   };
 
+  const moveToLoginPage = () => {
+    navigate("/login");
+  };
+
+  const logoutFromSession = () => {
+    logout();
+    navigate("/");
+  };
+
+  const redirectionTable = {
+    login: moveToLoginPage,
+    logout: logoutFromSession,
+  };
+
   return (
     <header>
-      {showBackButton && (
-        <div onClick={back} /*className="back-button" */>BACK</div>
-      )}
+      <div
+        className={`button left-button ${showBackButton ? "" : "hide"}`}
+        onClick={back}
+      >
+        BACK
+      </div>
       <h1>Wordle</h1>
-      {showBackButton && <div></div>}
+      <div
+        className="button right-button"
+        onClick={(e) => {
+          e.preventDefault();
+          return redirectionTable[loginButtonText]();
+        }}
+      >
+        {loginButtonText.toUpperCase()}
+      </div>
     </header>
   );
 };
