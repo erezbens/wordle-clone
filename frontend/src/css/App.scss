@@ -1,11 +1,12 @@
 * {
-  color: #ffffff;
+  /* color: #ffffff; */
+  color: #1a237e;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
     "Lucida Sans", Arial, sans-serif;
 }
 
 body {
-  background-color: #1d1919;
+  background-color: #ffcc80;
   overflow-y: hidden;
   margin: 0;
   -webkit-font-smoothing: antialiased;
@@ -29,6 +30,19 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  justify-content: center;
+  margin: 2px 8px;
+  div {
+    flex: 1;
+    min-width: -webkit-min-content;
+      // border: 1px solid green !important;
+  }
+
+  &.hide {
+
+  }
+
+
   /* width: 100%; */
   /* border: 1px solid green !important; */
   /* flex-direction: column; */

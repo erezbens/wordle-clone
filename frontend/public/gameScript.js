@@ -1,5 +1,95 @@
 import { words, dictionary } from "./dictionary.js";
 
+const keys = [
+  "Q",
+  "W",
+  "E",
+  "R",
+  "T",
+  "Y",
+  "U",
+  "I",
+  "O",
+  "P",
+  "A",
+  "S",
+  "D",
+  "F",
+  "G",
+  "H",
+  "J",
+  "K",
+  "L",
+  "ENTER",
+  "Z",
+  "X",
+  "C",
+  "V",
+  "B",
+  "N",
+  "M",
+  "<<",
+];
+
+const generateHTML = () => {
+  const container = document.createElement("div");
+  container.innerHTML = `<noscript>You need to enable JavaScript to run this app.</noscript>
+  <div id="global">
+    <div class="message-container"></div>
+    <div class="game">
+      <div id="board-container">
+        <div id="board"></div>
+      </div>
+      <div class="game-keyboard">
+        <div class="row">
+          <button id="Q" data-key="Q">Q</button>
+          <button id="W" data-key="W">W</button>
+          <button id="E" data-key="E">E</button>
+          <button id="R" data-key="R">R</button>
+          <button id="T" data-key="T">T</button>
+          <button id="Y" data-key="Y">Y</button>
+          <button id="U" data-key="U">U</button>
+          <button id="I" data-key="I">I</button>
+          <button id="O" data-key="O">O</button>
+          <button id="P" data-key="P">P</button>
+        </div>
+        <div class="row">
+          <div class="spacer half"></div>
+          <button id="A" data-key="A">A</button>
+          <button id="S" data-key="S">S</button>
+          <button id="D" data-key="D">D</button>
+          <button id="F" data-key="F">F</button>
+          <button id="G" data-key="G">G</button>
+          <button id="H" data-key="H">H</button>
+          <button id="J" data-key="J">J</button>
+          <button id="K" data-key="K">K</button>
+          <button id="L" data-key="L">L</button>
+          <div class="spacer half"></div>
+        </div>
+        <div class="row">
+          <button id="ENTER" data-key="ENTER" class="one-and-a-half">
+            enter
+          </button>
+          <button id="Z" data-key="Z">Z</button>
+          <button id="X" data-key="X">X</button>
+          <button id="C" data-key="C">C</button>
+          <button id="V" data-key="V">V</button>
+          <button id="B" data-key="B">B</button>
+          <button id="N" data-key="N">N</button>
+          <button id="M" data-key="M">M</button>
+          <button id="<<" data-key="<<" class="one-and-a-half">
+            &#9003;
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>`;
+
+  document.body.append(container);
+};
+
+generateHTML();
+
 const startGame = async () => {
   const tileDisplay = document.getElementById("board");
   const messageDisplay = document.querySelector(".message-container");
@@ -30,37 +120,6 @@ const startGame = async () => {
   };
 
   await getWordle();
-
-  const keys = [
-    "Q",
-    "W",
-    "E",
-    "R",
-    "T",
-    "Y",
-    "U",
-    "I",
-    "O",
-    "P",
-    "A",
-    "S",
-    "D",
-    "F",
-    "G",
-    "H",
-    "J",
-    "K",
-    "L",
-    "ENTER",
-    "Z",
-    "X",
-    "C",
-    "V",
-    "B",
-    "N",
-    "M",
-    "<<",
-  ];
 
   const guessRows = [
     ["", "", "", "", ""],

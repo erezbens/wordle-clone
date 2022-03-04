@@ -45,11 +45,11 @@ function Dashboard() {
     }
   };
 
-  useEffect(() => {
-    if (loading) return;
-    if (!user) return navigate("/");
-    fetchUserName();
-  }, [user, loading]);
+  // useEffect(() => {
+  //   if (loading) return;
+  //   if (!user) return navigate("/");
+  //   fetchUserName();
+  // }, [user, loading]);
 
   const viewLeaderboard = ({ user }) => {
     setShowLeaderboard((prev) => !prev);

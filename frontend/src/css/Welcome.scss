@@ -1,0 +1,21 @@
+.welcome-page {
+  /* display: flex; */
+  height: 100vh;
+  box-sizing: border-box;
+  text-align: center;
+    border: 1px solid green !important;
+}
+
+.welcome-page div {
+    padding: 2em;
+    &:hover {
+      color: #e65100;
+      cursor: pointer;
+    }
+
+    &.is-disabled {
+      color: black;
+
+    }
+}
+
