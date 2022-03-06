@@ -72,8 +72,6 @@ const signInWithGoogle = async () => {
   try {
     const res = await signInWithPopup(auth, googleProvider);
     const user = res.user;
-    alert(user.displayName);
-
     const q = query(collection(firestore, "users"), where("uid", "==", user.uid));
     const docs = await getDocs(q);
     if (docs.docs.length === 0) {
@@ -87,7 +85,7 @@ const signInWithGoogle = async () => {
         games: 0,
       });
     }
-    await setPersistence(auth, browserLocalPersistence);
+    // await setPersistence(auth, browserLocalPersistence);
   } catch (err) {
     console.error(err);
     alert(err.message);

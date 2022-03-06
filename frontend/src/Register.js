@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { Link, useNavigate } from "react-router-dom";
-import {
-  auth,
-  registerWithEmailAndPassword,
-  signInWithGoogle,
-} from "./firebase";
-import "./css/Register.css";
+import { auth, registerWithEmailAndPassword, signInWithGoogle } from "./firebase";
+import "./css/Register.scss";
 
 function Register() {
   const [email, setEmail] = useState("");
@@ -27,38 +23,17 @@ function Register() {
   return (
     <div className="register">
       <div className="register__container">
-        <input
-          type="text"
-          className="register__textBox"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          placeholder="Full Name"
-        />
-        <input
-          type="text"
-          className="register__textBox"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="E-mail Address"
-        />
-        <input
-          type="password"
-          className="register__textBox"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
+        <input type="text" className="register__textBox" value={name} onChange={(e) => setName(e.target.value)} placeholder="Full Name" />
+        <input type="text" className="register__textBox" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="E-mail Address" />
+        <input type="password" className="register__textBox" value={password} onChange={(e) => setPassword(e.target.value)} placeholder="Password" />
         <button className="register__btn" onClick={register}>
           Register
         </button>
-        <button
-          className="register__btn register__google"
-          onClick={signInWithGoogle}
-        >
+        <button className="register__btn register__google" onClick={signInWithGoogle}>
           Register with Google
         </button>
         <div>
-          Already have an account? <Link to="/">Login</Link> now.
+          Already have an account? <Link to="/login">Login</Link> now.
         </div>
       </div>
     </div>

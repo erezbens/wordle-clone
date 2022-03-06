@@ -27,8 +27,15 @@
   background-color: #212121;
 }
 .login__google {
-  background-color: #f44336;
+  background-color: #f49b36;
 }
 .login div {
   margin-top: 7px;
+  color: white;
+}
+link {
+  color: white;
+}
+a {
+  color: green;
 }
