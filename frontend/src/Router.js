@@ -3,8 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./Login";
 import Logout from "./Logout";
 import Register from "./Register";
-import Reset from "./Reset";
-import WelcomePage from "./WelcomePage";
+import About from "./About";
+import Navigator from "./Navigator";
 import Leaderboard from "./Leaderboard";
 import Play from "./Play";
 
@@ -16,7 +16,7 @@ const Router = ({ user, backButton, showBackButton, updateScore, leaders }) => {
           <Route
             path="/"
             element={
-              <WelcomePage
+              <Navigator
                 showBackButton={showBackButton}
                 backButton={backButton}
                 user={user}
@@ -29,10 +29,10 @@ const Router = ({ user, backButton, showBackButton, updateScore, leaders }) => {
             path="/leaderboard"
             element={<Leaderboard /*currentUser={user} */ leaders={leaders} />}
           />
-          <Route exact path="/about" element={<div />} />
           <Route exact path="/login" element={<Login />} />
           <Route exact path="/logout" element={<Logout />} />
           <Route exact path="/register" element={<Register />} />
+          <Route exact path="/about" element={<About />} />
         </Routes>
       </BrowserRouter>
     </div>

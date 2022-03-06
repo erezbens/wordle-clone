@@ -14,7 +14,6 @@ function Logout() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    console.log("HIII");
     logout();
     navigate("/");
   }, []);

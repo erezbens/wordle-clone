@@ -79,7 +79,6 @@ const signInWithGoogle = async () => {
   try {
     const res = await signInWithPopup(auth, googleProvider);
     const user = res.user;
-    console.log(user.displayName);
     alert(user.displayName);
 
     const q = query(

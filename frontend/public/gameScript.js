@@ -1,35 +1,6 @@
 import { words, dictionary } from "./dictionary.js";
 
-const keys = [
-  "Q",
-  "W",
-  "E",
-  "R",
-  "T",
-  "Y",
-  "U",
-  "I",
-  "O",
-  "P",
-  "A",
-  "S",
-  "D",
-  "F",
-  "G",
-  "H",
-  "J",
-  "K",
-  "L",
-  "ENTER",
-  "Z",
-  "X",
-  "C",
-  "V",
-  "B",
-  "N",
-  "M",
-  "<<",
-];
+const keys = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "A", "S", "D", "F", "G", "H", "J", "K", "L", "ENTER", "Z", "X", "C", "V", "B", "N", "M", "<<"];
 
 const generateHTML = () => {
   const container = document.createElement("div");
@@ -86,39 +57,24 @@ const generateHTML = () => {
 };
 
 const startGame = async () => {
-  console.log("HTML Generated");
   generateHTML();
-  // const tileDisplay = document.getElementById("board");
+
+  let wordle;
+  let currentRow = 0;
+  let currentTile = 0;
+  let gameOver = false;
+  const isDebug = false;
   const tileDisplay = document.querySelector(".board");
   const messageDisplay = document.querySelector(".message-container");
-  let gameOver = false;
-  let wordle;
-  const isDebug = false;
-  // const route = isDebug
-  //   ? "http://localhost:5001/wordle-clone-785d4/europe-west1/app"
-  //   : "https://europe-west1-wordle-clone-785d4.cloudfunctions.net/app";
 
   const getWordle = async () => {
     const randomWord = words[Math.floor(Math.random() * words.length)];
 
     wordle = randomWord.toUpperCase();
     isDebug && console.log(wordle);
-
-    // I used to fetch the word from rapidAPI
-    // try {
-    //   let res = await fetch(`${route}/word`);
-    //   res = res.json();
-    //   if (isDebug) {
-    //     console.debug(res);
-    //   }
-    //   wordle = res.toUpperCase();
-    // } catch (e) {
-    //   console.error(e);
-    // }
   };
 
   await getWordle();
-
   const guessRows = [
     ["", "", "", "", ""],
     ["", "", "", "", ""],
@@ -127,15 +83,11 @@ const startGame = async () => {
     ["", "", "", "", ""],
     ["", "", "", "", ""],
   ];
-
-  let currentRow = 0;
-  let currentTile = 0;
-
   guessRows.forEach((row, rowIndex) => {
     const rowElement = document.createElement("div");
     rowElement.setAttribute("id", "row-" + rowIndex);
     rowElement.classList.add("board-row");
-
+    
     row.forEach((guess, guessIndex) => {
       const tileElement = document.createElement("div");
       tileElement.setAttribute("id", "row-" + rowIndex + "-tile-" + guessIndex);
@@ -165,9 +117,7 @@ const startGame = async () => {
 
   const addLetter = (letter) => {
     if (currentTile < 5 && currentRow < 6) {
-      const tile = document.getElementById(
-        "row-" + currentRow + "-tile-" + currentTile
-      );
+      const tile = document.getElementById("row-" + currentRow + "-tile-" + currentTile);
       tile.textContent = letter;
       tile.setAttribute("data", letter);
 
@@ -179,9 +129,7 @@ const startGame = async () => {
   const deleteLetter = () => {
     if (currentTile > 0) {
       currentTile--;
-      const tile = document.getElementById(
-        "row-" + currentRow + "-tile-" + currentTile
-      );
+      const tile = document.getElementById("row-" + currentRow + "-tile-" + currentTile);
       tile.textContent = "";
       tile.setAttribute("data", "");
 
@@ -213,16 +161,16 @@ const startGame = async () => {
         flipTiles();
         if (guess === wordle) {
           const points = 6 - currentRow;
-          showMessage(`GREAT JOB!! Received ${points} points! :)`);
+          // showMessage(`GREAT JOB!! Received ${points} points! :)`);
           updateScore(points);
           gameOver = true;
-          showRefreshButton();
+          showRefreshButton(`GREAT JOB!! Received ${points} points! :) Click here to play again`);
         } else {
           if (currentRow >= 5) {
-            showMessage("Game Over :( You lost 3 points");
+            // showMessage("Game Over :( You lost 3 points");
             updateScore(-3);
             gameOver = true;
-            showRefreshButton();
+            showRefreshButton("Game over, you lost 6 points. Click here to play again");
           }
           if (currentRow < 5) {
             currentRow++;
@@ -233,30 +181,38 @@ const startGame = async () => {
     }
   };
 
-  const showRefreshButton = () => {
-    const refreshButton = document.createElement("p");
-    refreshButton.textContent = "Play Again!";
+  let lastMessageRef = null;
+
+  const showRefreshButton = (message) => {
+    lastMessageRef?.remove();
+    const refreshButton = document.createElement("div");
+    refreshButton.textContent = message;
     refreshButton.classList.add("refresh-button");
     refreshButton.addEventListener("click", () => window.location.reload());
     messageDisplay.append(refreshButton);
   };
 
   const showMessage = (message) => {
+    lastMessageRef?.remove();
     const messageElement = document.createElement("div");
     messageElement.textContent = message;
     messageDisplay.append(messageElement);
-    setTimeout(() => messageDisplay.removeChild(messageElement), 4000);
+    lastMessageRef = messageElement;
+    setTimeout(() => {
+      try {
+        messageDisplay.removeChild(messageElement);
+      } catch (e) {
+        console.info("Nothing");
+      }
+      // }, 4000);
+    }, 40000);
   };
 
   const addColorToKey = (letter, color) => {
     const key = document.getElementById(letter);
     const prevKeyColor = key.className;
 
-    if (
-      prevKeyColor === "green-overlay" ||
-      (prevKeyColor === "yellow-overlay" && color !== "green-overlay")
-    )
-      return;
+    if (prevKeyColor === "green-overlay" || (prevKeyColor === "yellow-overlay" && color !== "green-overlay")) return;
 
     key.classList.remove("yellow-overlay");
     key.classList.remove("grey-overlay");
@@ -274,8 +230,7 @@ const startGame = async () => {
 
     guess.forEach((guess) => {
       if (checkWordle.includes(guess.letter)) {
-        guess.color =
-          guess.color !== "green-overlay" ? "yellow-overlay" : "green-overlay";
+        guess.color = guess.color !== "green-overlay" ? "yellow-overlay" : "green-overlay";
         checkWordle = checkWordle.replace(guess.letter, "");
       }
     });
@@ -317,5 +272,4 @@ const startGame = async () => {
   });
 };
 
-console.log("Script run again");
 startGame();

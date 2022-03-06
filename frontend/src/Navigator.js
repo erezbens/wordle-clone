@@ -7,7 +7,7 @@ import Header from "./Header";
 
 import "./css/Welcome.scss";
 
-function WelcomePage({ showBackButton, backButton }) {
+function Navigator({ showBackButton, backButton }) {
   const [user, loading, error] = useAuthState(auth);
 
   const navigate = useNavigate();
@@ -28,29 +28,23 @@ function WelcomePage({ showBackButton, backButton }) {
     navigate("/leaderboard");
   };
 
+  const About = (e) => {
+    e.preventDefault();
+    showBackButton(true);
+    navigate("/about");
+  };
+
   return (
     <>
       <Header showBackButton={backButton} isLoggedIn={user} />
       <div className="welcome-page">
-        <div
-          // className={user ? "" : "disabled"}
-          onClick={playGame}
-          // data-tip={user ? "" : ``}
-        >
-          {user ? "PLAY" : "PLAY\nANONYMOUSLY"}
-        </div>
+        <div onClick={playGame}>{user ? "PLAY" : "PLAY\nANONYMOUSLY"}</div>
         <div onClick={showLeaderboard}>LEADERBOARD</div>
-        <div onClick={() => {}}>ABOUT</div>
-        <ReactTooltip
-          delayHide={30}
-          place="right"
-          type="info"
-          effect="float"
-          border={true}
-        />
+        <div onClick={About}>ABOUT</div>
+        <ReactTooltip delayHide={30} place="right" type="info" effect="float" border={true} />
       </div>
     </>
   );
 }
 
-export default WelcomePage;
+export default Navigator;

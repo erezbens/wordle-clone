@@ -24,7 +24,6 @@ function App() {
   const updateScore = async (e) => {
     try {
       if (!user) {
-        console.log("Anonymous player");
         return;
       }
       await _updateScore({
