@@ -10,17 +10,12 @@ function createGameScriptObject() {
 }
 
 const Play = ({ updateScore }) => {
-  // const [gameScript, setGameScript] = useState(null);
-
   useEffect(() => {
-    // if (!gameScript) {
     let script = createGameScriptObject();
 
     document.addEventListener("updateScore", updateScore);
     document.body.appendChild(script);
-    // setGameScript(script);
     document.getElementById("game-container")?.removeAttribute("hidden");
-    // }
 
     return () => {
       if (script) {
@@ -29,11 +24,9 @@ const Play = ({ updateScore }) => {
         document
           .getElementById("game-container")
           .setAttribute("hidden", "true");
-
-        // setGameScript(null);
       }
     };
-  }, [updateScore /* gameScript */]);
+  }, [updateScore]);
 
   return <Header showBackButton={true} />;
 };

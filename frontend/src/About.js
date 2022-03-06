@@ -1,18 +1,29 @@
 import "./css/About.scss";
+import Header from "./Header";
 
 const About = () => {
   return (
-    <div className="about">
-      <h2>About</h2>
-      <div className="notes">
-        <span>This is a remake of Wordle using html, css and javascript</span>
-        <span></span>
-        <span></span>
+    <>
+      <Header showBackButton={true} />
+      <div className="about">
+        <div className="notes">
+          <p>This is a development playground</p>
+          <p>It is built using html, css, React and vanilla javascript</p>
+          <p>If you are interested in the geeky stuff, check out the source code</p>
+        </div>
+        <div className="links">
+          <p>
+            <a href="mailto:erez1158@gmail.com">For any issues :)</a>
+          </p>
+          <p>
+            <a href="https://github.com/erezbens/wordle-clone">The Source Code</a>
+          </p>
+          <p>
+            <a href="https://www.nytimes.com/games/wordle/index.html">The Original Wordle</a>
+          </p>
+        </div>
       </div>
-      <div className="links">
-        <a href="https://www.nytimes.com/games/wordle/index.html">The original Wordle</a>
-      </div>
-    </div>
+    </>
   );
 };
 

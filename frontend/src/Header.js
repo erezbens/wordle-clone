@@ -10,13 +10,13 @@ const Header = ({ showBackButton }) => {
   const navigate = useNavigate();
   const loginButtonText = user ? "logout" : "login";
 
+  const moveToLoginPage = () => {
+    navigate("/login");
+  };
+
   const back = (e) => {
     e.preventDefault();
     navigate("/");
-  };
-
-  const moveToLoginPage = () => {
-    navigate("/login");
   };
 
   const logoutFromSession = () => {
@@ -31,13 +31,10 @@ const Header = ({ showBackButton }) => {
 
   return (
     <header>
-      <div
-        className={`button left-button ${showBackButton ? "" : "hide"}`}
-        onClick={back}
-      >
+      <div className={`button left-button ${showBackButton ? "" : "hide"}`} onClick={back}>
         BACK
       </div>
-      <h1>Wordle</h1>
+    <h1 onClick={back} className="clickable">Wordle</h1>
       <div
         className="button right-button"
         onClick={(e) => {
