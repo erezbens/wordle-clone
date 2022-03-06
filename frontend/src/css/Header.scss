@@ -1,10 +1,7 @@
 header {
-  // border: 1px solid green !important;
   display: flex;
   border-bottom: 1px solid grey;
   align-items: center;
-  // margin: 2px 8px;
-  // font-size: 100%;
   width: 100vw;
   height: 100px;
   flex-wrap: wrap;
@@ -22,19 +19,16 @@ header {
     }
   }
   .right-button {
-    // display: flex;
     justify-content: center;
-
-    // padding-left: 30px;
-    // flex-direction: column;
     align-items: center;
-    // margin: 0 auto;
-    // padding-left: 12em;
   }
-  // .left-button {
-  //   margin-right: 12em;
-  // }
   .hide {
     visibility: hidden;
+  }
+  .clickable {
+    &:hover {
+      color: #f1844a;
+      cursor: pointer;
+    }
   }
 }
