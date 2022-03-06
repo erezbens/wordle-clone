@@ -37,7 +37,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const firestore = getFirestore(app);
 
-const updateScore = async ({ games, points, user }) => {
+const _updateScore = async ({ games, points, user }) => {
   try {
     const q = query(
       collection(firestore, "users"),
@@ -54,7 +54,7 @@ const updateScore = async ({ games, points, user }) => {
       games: prevData.games + games,
     };
 
-    // await updateDoc(ref, newData);
+    await updateDoc(ref, newData);
   } catch (err) {
     console.error(err);
   }
@@ -79,6 +79,8 @@ const signInWithGoogle = async () => {
   try {
     const res = await signInWithPopup(auth, googleProvider);
     const user = res.user;
+    console.log(user.displayName);
+    alert(user.displayName);
 
     const q = query(
       collection(firestore, "users"),
@@ -146,14 +148,14 @@ const logout = () => {
 };
 
 // for later
-// const _signInAnonymously = async () => {
-//   try {
-//     await signInAnonymously(auth);
-//   } catch (err) {
-//     console.error(err);
-//     alert(err.message);
-//   }
-// };
+const _signInAnonymously = async () => {
+  try {
+    await signInAnonymously(auth);
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
+};
 
 export {
   auth,
@@ -164,6 +166,6 @@ export {
   sendPasswordReset,
   logout,
   getLeaderboard,
-  updateScore,
-  // _signInAnonymously,
+  _updateScore,
+  _signInAnonymously,
 };

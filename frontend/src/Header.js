@@ -5,7 +5,7 @@ import "./css/Header.scss";
 import { auth, logout } from "./firebase";
 
 const Header = ({ showBackButton }) => {
-  const [user, loading, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
 
   const navigate = useNavigate();
   const loginButtonText = user ? "logout" : "login";
@@ -45,6 +45,8 @@ const Header = ({ showBackButton }) => {
           return redirectionTable[loginButtonText]();
         }}
       >
+        {/* <img src={user?.photoURL} alt="" /> */}
+
         {loginButtonText.toUpperCase()}
       </div>
     </header>

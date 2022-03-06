@@ -33,54 +33,51 @@ const keys = [
 
 const generateHTML = () => {
   const container = document.createElement("div");
+  container.setAttribute("id", "game-container");
   container.innerHTML = `<noscript>You need to enable JavaScript to run this app.</noscript>
-  <div id="global">
+  <div class="game">
     <div class="message-container"></div>
-    <div class="game">
-      <div id="board-container">
-        <div id="board"></div>
+    <div class="board"></div>
+    <div class="game-keyboard">
+      <div class="keyboard-row">
+        <button id="Q" data-key="Q">Q</button>
+        <button id="W" data-key="W">W</button>
+        <button id="E" data-key="E">E</button>
+        <button id="R" data-key="R">R</button>
+        <button id="T" data-key="T">T</button>
+        <button id="Y" data-key="Y">Y</button>
+        <button id="U" data-key="U">U</button>
+        <button id="I" data-key="I">I</button>
+        <button id="O" data-key="O">O</button>
+        <button id="P" data-key="P">P</button>
       </div>
-      <div class="game-keyboard">
-        <div class="row">
-          <button id="Q" data-key="Q">Q</button>
-          <button id="W" data-key="W">W</button>
-          <button id="E" data-key="E">E</button>
-          <button id="R" data-key="R">R</button>
-          <button id="T" data-key="T">T</button>
-          <button id="Y" data-key="Y">Y</button>
-          <button id="U" data-key="U">U</button>
-          <button id="I" data-key="I">I</button>
-          <button id="O" data-key="O">O</button>
-          <button id="P" data-key="P">P</button>
-        </div>
-        <div class="row">
-          <div class="spacer half"></div>
-          <button id="A" data-key="A">A</button>
-          <button id="S" data-key="S">S</button>
-          <button id="D" data-key="D">D</button>
-          <button id="F" data-key="F">F</button>
-          <button id="G" data-key="G">G</button>
-          <button id="H" data-key="H">H</button>
-          <button id="J" data-key="J">J</button>
-          <button id="K" data-key="K">K</button>
-          <button id="L" data-key="L">L</button>
-          <div class="spacer half"></div>
-        </div>
-        <div class="row">
-          <button id="ENTER" data-key="ENTER" class="one-and-a-half">
-            enter
-          </button>
-          <button id="Z" data-key="Z">Z</button>
-          <button id="X" data-key="X">X</button>
-          <button id="C" data-key="C">C</button>
-          <button id="V" data-key="V">V</button>
-          <button id="B" data-key="B">B</button>
-          <button id="N" data-key="N">N</button>
-          <button id="M" data-key="M">M</button>
-          <button id="<<" data-key="<<" class="one-and-a-half">
-            &#9003;
-          </button>
-        </div>
+      <div class="keyboard-row">
+        <div class="spacer half"></div>
+        <button id="A" data-key="A">A</button>
+        <button id="S" data-key="S">S</button>
+        <button id="D" data-key="D">D</button>
+        <button id="F" data-key="F">F</button>
+        <button id="G" data-key="G">G</button>
+        <button id="H" data-key="H">H</button>
+        <button id="J" data-key="J">J</button>
+        <button id="K" data-key="K">K</button>
+        <button id="L" data-key="L">L</button>
+        <div class="spacer half"></div>
+      </div>
+      <div class="keyboard-row">
+        <button id="ENTER" data-key="ENTER" class="one-and-a-half">
+          enter
+        </button>
+        <button id="Z" data-key="Z">Z</button>
+        <button id="X" data-key="X">X</button>
+        <button id="C" data-key="C">C</button>
+        <button id="V" data-key="V">V</button>
+        <button id="B" data-key="B">B</button>
+        <button id="N" data-key="N">N</button>
+        <button id="M" data-key="M">M</button>
+        <button id="<<" data-key="<<" class="one-and-a-half">
+          &#9003;
+        </button>
       </div>
     </div>
   </div>`;
@@ -88,10 +85,11 @@ const generateHTML = () => {
   document.body.append(container);
 };
 
-generateHTML();
-
 const startGame = async () => {
-  const tileDisplay = document.getElementById("board");
+  console.log("HTML Generated");
+  generateHTML();
+  // const tileDisplay = document.getElementById("board");
+  const tileDisplay = document.querySelector(".board");
   const messageDisplay = document.querySelector(".message-container");
   let gameOver = false;
   let wordle;
@@ -136,6 +134,7 @@ const startGame = async () => {
   guessRows.forEach((row, rowIndex) => {
     const rowElement = document.createElement("div");
     rowElement.setAttribute("id", "row-" + rowIndex);
+    rowElement.classList.add("board-row");
 
     row.forEach((guess, guessIndex) => {
       const tileElement = document.createElement("div");
@@ -243,7 +242,7 @@ const startGame = async () => {
   };
 
   const showMessage = (message) => {
-    const messageElement = document.createElement("p");
+    const messageElement = document.createElement("div");
     messageElement.textContent = message;
     messageDisplay.append(messageElement);
     setTimeout(() => messageDisplay.removeChild(messageElement), 4000);
@@ -318,4 +317,5 @@ const startGame = async () => {
   });
 };
 
+console.log("Script run again");
 startGame();
