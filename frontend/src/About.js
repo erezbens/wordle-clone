@@ -13,9 +13,6 @@ const About = () => {
         </div>
         <div className="links">
           <p>
-            <a href="mailto:erez1158@gmail.com">For any issues :)</a>
-          </p>
-          <p>
             <a href="https://github.com/erezbens/wordle-clone">The Source Code</a>
           </p>
           <p>
