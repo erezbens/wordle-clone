@@ -1,6 +1,7 @@
 .welcome-page {
-  // border: 1px solid green !important;
-  height: calc(100vh - 100px); // 100px is header-height
+  height: calc(100vh - 100px);
+  height: calc((var(--vh, 1vh) * 100) - 100px);
+
   box-sizing: border-box;
   text-align: center;
   flex-wrap: wrap;
