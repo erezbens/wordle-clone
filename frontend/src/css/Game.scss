@@ -1,0 +1,76 @@
+#game-container {
+  font-family:  sans-serif;
+  width: 100vw; height: calc(100vh - 100px); box-sizing: border-box;
+  --header-height: 100px;
+  --game-max-width: 500px;
+  --keyboard-height: 200px;
+}
+
+.game {
+  max-width: var(--game-max-width); height: calc(100% - var(--header-height)); height: 100%; display: flex; align-items: center; flex-direction: column; box-sizing: border-box; margin: 0 auto;
+  .message-container {
+      display: flex; justify-content: center; align-items: center; height: 10%; width: 100%; text-align: center; margin: 0 auto;
+      .refresh-button {
+        &:hover {
+          color: green;cursor: pointer;
+        };
+      }
+  }
+  .board {
+    width: 100%; height: 65%;
+    .board-row {
+      display: flex; align-items: center; max-width: 75%; margin: 0 auto; justify-content: space-around; height: 16%;
+    }
+
+    .tile {
+      display: inline-flex; font-weight: bold; width: 100%; height: 80%; border: 1px solid #3a3a3c; box-sizing: border-box; justify-content: center; align-items: center; color: #3b3535; margin: 1%; user-select: none; box-sizing: border-box;
+    }
+  }
+  .game-keyboard {
+    margin-bottom: 2%;
+    box-sizing: border-box; height: 25%; user-select: none; width: 100%; display: flex; flex-direction: column; justify-content: space-between; align-items: center;  
+    .keyboard-row {
+      display: flex; width: 98%; height: 30%; touch-action: manipulation; 
+    }
+    button {
+      margin: 0 3px; font-family: inherit; font-weight: bold; padding: 0; border-radius: 4px; cursor: pointer; user-select: none; background-color: var(--key-bg); color: var(--key-text-color); flex: 1; display: flex; justify-content: center; align-items: center; text-transform: uppercase; -webkit-tap-highlight-color: rgba(0, 0, 0, 0.3);
+    }
+  }
+}
+
+/* Allow tiles to be smaller on small screens */
+@media (max-height: 600px) {
+  .tile {
+    font-size: 1em; line-height: 1em;
+  }
+}
+
+.half {
+  flex: 0.5;
+}
+
+.tile.flip {
+  animation: 0.5s linear flipping; background-color: green;
+}
+
+@keyframes flipping {
+  0% {
+    transform: rotateX(0deg);
+  }
+  50% {
+    transform: rotateX(90deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+.green-overlay {
+  background-color: #5cd152 !important; /* border: none !important;*/
+}
+.yellow-overlay {
+  background-color: #d6b625!important;
+}
+.grey-overlay {
+  background-color: #7d857d !important;
+}

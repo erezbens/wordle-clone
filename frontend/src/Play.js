@@ -1,25 +1,33 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
+import "./css/Game.scss";
+
+function createGameScriptObject() {
+  const script = document.createElement("script");
+  script.src = "gameScript.js";
+  script.type = "module";
+  return script;
+}
 
 const Play = ({ updateScore }) => {
   useEffect(() => {
-    let gameScript = document.createElement("script");
-
-    gameScript.src = "gameScript.js";
-    gameScript.type = "module";
+    let script = createGameScriptObject();
 
     document.addEventListener("updateScore", updateScore);
-    document.body.appendChild(gameScript);
+    document.body.appendChild(script);
+    document.getElementById("game-container")?.removeAttribute("hidden");
 
     return () => {
-      if (gameScript) {
-        document.body.removeChild(gameScript);
+      if (script) {
         document.removeEventListener("updateScore", updateScore);
+        script.remove();
+        document
+          .getElementById("game-container")
+          .setAttribute("hidden", "true");
       }
     };
   }, [updateScore]);
 
-  // return <div />;
   return <Header showBackButton={true} />;
 };
 

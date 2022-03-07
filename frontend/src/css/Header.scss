@@ -2,7 +2,11 @@ header {
   display: flex;
   border-bottom: 1px solid grey;
   align-items: center;
-  margin: 2px 8px;
+  width: 100vw;
+  height: 100px;
+  flex-wrap: wrap;
+  margin: 0;
+
   .button {
     flex: 1;
     justify-content: center;
@@ -15,12 +19,16 @@ header {
     }
   }
   .right-button {
-    margin-left: 12em;
-  }
-  .left-button {
-    margin-right: 12em;
+    justify-content: center;
+    align-items: center;
   }
   .hide {
     visibility: hidden;
+  }
+  .clickable {
+    &:hover {
+      color: #f1844a;
+      cursor: pointer;
+    }
   }
 }

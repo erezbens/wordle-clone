@@ -1,6 +1,6 @@
 # Wordle Clone
 
-This is a remake for the famous Wordle game using html, css and javascript.  
+This is a remake of Wordle using html, css and javascript.  
 You can play the game [here](https://wordle-clone-785d4.web.app/).  
 If you find any bug you're more than welcome to contribute by opening an issue or [contact me](https://github.com/erezbens).
 

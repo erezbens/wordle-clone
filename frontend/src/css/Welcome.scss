@@ -1,17 +1,17 @@
 .welcome-page {
-  height: 100vh;
+  // border: 1px solid green !important;
+  height: calc(100vh - 100px); // 100px is header-height
   box-sizing: border-box;
   text-align: center;
+  flex-wrap: wrap;
+  padding-top: 70px;
 }
 .welcome-page div {
+  margin: 40px;
   padding: 2em;
   &:hover {
     color: #e65100;
     cursor: pointer;
-  }
-
-  p {
-    border: 1px solid green !important;
   }
 }
 .welcome-page .disabled {

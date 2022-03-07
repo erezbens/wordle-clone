@@ -1,5 +1,5 @@
 .leaderboard {
-  max-width: 60%;
+  max-width: 90%;
   -webkit-overflow-scrolling: touch;
   display: flex;
   flex-direction: column;
@@ -8,7 +8,9 @@
   margin: 0 auto;
   background-color: #ffd180;
   z-index: 100;
-  height: calc(100% - var(--header-height));
+  height: calc(100% - 200px);
+  // overflow-y: scroll;
+  height: calc(100vh - 100px); // 100px is header-height
 }
 
 .leaderboard-header {
@@ -21,11 +23,13 @@
 }
 
 .leaderboard-user-details {
+  overflow: hidden;
+  align-content: center;
   border-bottom: 1px dotted #795548;
+  box-sizing: border-box;
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
   min-height: 10% !important;
-  /* height: 10%; */
   align-items: center;
 }
 
@@ -39,6 +43,8 @@
 
 .leaderboard-user-details img {
   height: 60%;
+  box-sizing: border-box;
+  border: 1px solid #795548 !important;
 }
 .leaderboard-user-details .score {
 }

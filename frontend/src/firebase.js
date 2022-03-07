@@ -11,38 +11,31 @@ import {
   setPersistence,
   browserLocalPersistence,
 } from "firebase/auth";
-import {
-  getFirestore,
-  query,
-  getDocs,
-  collection,
-  where,
-  addDoc,
-  doc,
-  updateDoc,
-} from "firebase/firestore";
+import { getFirestore, query, getDocs, collection, where, addDoc, doc, updateDoc } from "firebase/firestore";
 
+/*  To test the app locally, you need to do few things:
+    - sign up to firebase at https://firebase.google.com/
+    - Create a new project and enable hosting
+    - Create .env file (./frontend/.env)
+    - Copy the configuration from firebase to the .env */
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: "wordle-clone-785d4.firebaseapp.com",
-  databaseURL: "https://wordle-clone-785d4-default-rtfirestore.firebaseio.com",
-  projectId: "wordle-clone-785d4",
-  storageBucket: "wordle-clone-785d4.appspot.com",
-  messagingSenderId: "1007167674942",
-  appId: "1:1007167674942:web:3a94e156bbd19d83118f6f",
-  measurementId: "G-DDX78P8P4Y",
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  databaseURL: process.env.REACT_APP_DB_URL,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MESASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const firestore = getFirestore(app);
 
-const updateScore = async ({ games, points, user }) => {
+const _updateScore = async ({ games, points, user }) => {
   try {
-    const q = query(
-      collection(firestore, "users"),
-      where("uid", "==", user.uid)
-    );
+    const q = query(collection(firestore, "users"), where("uid", "==", user.uid));
     const docs = await getDocs(q);
     const receivedDoc = docs.docs[0];
     const prevData = receivedDoc.data();
@@ -54,7 +47,7 @@ const updateScore = async ({ games, points, user }) => {
       games: prevData.games + games,
     };
 
-    // await updateDoc(ref, newData);
+    await updateDoc(ref, newData);
   } catch (err) {
     console.error(err);
   }
@@ -79,11 +72,7 @@ const signInWithGoogle = async () => {
   try {
     const res = await signInWithPopup(auth, googleProvider);
     const user = res.user;
-
-    const q = query(
-      collection(firestore, "users"),
-      where("uid", "==", user.uid)
-    );
+    const q = query(collection(firestore, "users"), where("uid", "==", user.uid));
     const docs = await getDocs(q);
     if (docs.docs.length === 0) {
       await addDoc(collection(firestore, "users"), {
@@ -96,7 +85,7 @@ const signInWithGoogle = async () => {
         games: 0,
       });
     }
-    await setPersistence(auth, browserLocalPersistence);
+    // await setPersistence(auth, browserLocalPersistence);
   } catch (err) {
     console.error(err);
     alert(err.message);
@@ -146,24 +135,13 @@ const logout = () => {
 };
 
 // for later
-// const _signInAnonymously = async () => {
-//   try {
-//     await signInAnonymously(auth);
-//   } catch (err) {
-//     console.error(err);
-//     alert(err.message);
-//   }
-// };
-
-export {
-  auth,
-  firestore,
-  signInWithGoogle,
-  logInWithEmailAndPassword,
-  registerWithEmailAndPassword,
-  sendPasswordReset,
-  logout,
-  getLeaderboard,
-  updateScore,
-  // _signInAnonymously,
+const _signInAnonymously = async () => {
+  try {
+    await signInAnonymously(auth);
+  } catch (err) {
+    console.error(err);
+    alert(err.message);
+  }
 };
+
+export { auth, firestore, signInWithGoogle, logInWithEmailAndPassword, registerWithEmailAndPassword, sendPasswordReset, logout, getLeaderboard, _updateScore, _signInAnonymously };
