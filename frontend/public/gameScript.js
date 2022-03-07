@@ -87,7 +87,7 @@ const startGame = async () => {
     const rowElement = document.createElement("div");
     rowElement.setAttribute("id", "row-" + rowIndex);
     rowElement.classList.add("board-row");
-    
+
     row.forEach((guess, guessIndex) => {
       const tileElement = document.createElement("div");
       tileElement.setAttribute("id", "row-" + rowIndex + "-tile-" + guessIndex);
@@ -151,6 +151,15 @@ const startGame = async () => {
     document.dispatchEvent(event);
   };
 
+  const pointsTable = {
+    0: 16,
+    1: 10,
+    2: 6,
+    3: 3,
+    4: 2,
+    5: 1,
+  };
+
   const checkRow = () => {
     const guess = guessRows[currentRow].join("");
     if (currentTile === 5 && !gameOver) {
@@ -160,19 +169,17 @@ const startGame = async () => {
       } else {
         flipTiles();
         if (guess === wordle) {
-          const points = 6 - currentRow;
-          // showMessage(`GREAT JOB!! Received ${points} points! :)`);
+          // if player guessed the right word
+          const points = pointsTable[currentRow];
           updateScore(points);
-          gameOver = true;
           showRefreshButton(`GREAT JOB!! Received ${points} points! :) Click here to play again`);
+          gameOver = true;
         } else {
           if (currentRow >= 5) {
-            // showMessage("Game Over :( You lost 3 points");
-            updateScore(-3);
+            updateScore(-6);
             gameOver = true;
             showRefreshButton("Game over, you lost 6 points. Click here to play again");
-          }
-          if (currentRow < 5) {
+          } else if (currentRow < 5) {
             currentRow++;
             currentTile = 0;
           }
