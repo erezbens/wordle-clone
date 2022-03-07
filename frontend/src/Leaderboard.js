@@ -1,6 +1,6 @@
 import Header from "./Header";
 import "./css/Leaderboard.scss";
-import defaultImg from "./assets/anonymous.jpeg";
+import defaultImg from "./assets/anonymous.png";
 
 const Leaderboard = ({ leaders, currentUser = { uid: "foo" } }) => {
   return (
