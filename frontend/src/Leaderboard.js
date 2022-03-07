@@ -8,7 +8,6 @@ const Leaderboard = ({ leaders, currentUser = { uid: "foo" } }) => {
       <Header showBackButton={true} />
       <div className="leaderboard">
         {leaders.map((user, index) => {
-          console.log(user.photoURL);
           return (
             <div key={user.uid} className={`leaderboard-user-details ${currentUser.uid === user.uid ? "leaderboard-current-user" : ""}`}>
               <p>#{index + 1}</p>
