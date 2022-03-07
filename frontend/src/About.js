@@ -13,7 +13,7 @@ const About = () => {
         </div>
         <div className="links">
           <p>
-            <a href="https://github.com/erezbens/wordle-clone">The Source Code</a>
+            <a href="https://github.com/erezbens/wordle-clone">Source Code</a>
           </p>
           <p>
             <a href="https://www.nytimes.com/games/wordle/index.html">The Original Wordle</a>
