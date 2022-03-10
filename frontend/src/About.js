@@ -13,10 +13,14 @@ const About = () => {
         </div>
         <div className="links">
           <p>
-            <a href="https://github.com/erezbens/wordle-clone">Source Code</a>
+            <a href="https://github.com/erezbens/wordle-clone" target="_blank" rel="norefferre noreferrer">
+              Source Code
+            </a>
           </p>
           <p>
-            <a href="https://www.nytimes.com/games/wordle/index.html">The Original Wordle</a>
+            <a href="https://www.nytimes.com/games/wordle/index.html" target="_blank" rel="noreferrer">
+              The Original Wordle
+            </a>
           </p>
         </div>
       </div>

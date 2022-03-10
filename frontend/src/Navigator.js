@@ -34,11 +34,13 @@ function Navigator({ showBackButton, backButton }) {
     navigate("/about");
   };
 
+  if (loading) return <></>;
+
   return (
     <>
       <Header showBackButton={backButton} isLoggedIn={user} />
       <div className="welcome-page">
-        <div onClick={playGame}>{user ? "PLAY" : "PLAY\nANONYMOUSLY"}</div>
+        <div onClick={playGame}>{user ? "PLAY" : "PLAY ANONYMOUSLY"}</div>
         <div onClick={showLeaderboard}>LEADERBOARD</div>
         <div onClick={About}>ABOUT</div>
         <ReactTooltip delayHide={30} place="right" type="info" effect="float" border={true} />
