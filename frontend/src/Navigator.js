@@ -4,6 +4,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "./firebase";
 import Header from "./Header";
+import RingLoader from "react-spinners/RingLoader";
 
 import "./css/Welcome.scss";
 
@@ -34,7 +35,12 @@ function Navigator({ showBackButton, backButton }) {
     navigate("/about");
   };
 
-  if (loading) return <></>;
+  if (loading)
+    return (
+      <div className="spinner">
+        <RingLoader />
+      </div>
+    );
 
   return (
     <>
@@ -45,6 +51,7 @@ function Navigator({ showBackButton, backButton }) {
         <div onClick={About}>ABOUT</div>
         <ReactTooltip delayHide={30} place="right" type="info" effect="float" border={true} />
       </div>
+      )
     </>
   );
 }
